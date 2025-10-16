@@ -94,6 +94,7 @@ import AdminOverview from "@/components/AdminDashbord/Overview/AdminOverview";
 import AdminSupport from "@/components/AdminDashbord/Admin/AdminSupport";
 import AdminSettings from "@/components/AdminDashbord/Admin/AdminSettings";
 import ListeningPractice from "@/components/UserDashbord/ItalianPractice/ListeningMood/ListeningPractice";
+import ListeningModule from "@/components/UserDashbord/ItalianPractice/ListeningMood/ListeningModule";
   
  
 
@@ -140,6 +141,7 @@ const routes = createBrowserRouter([
             element: <UserItalianPractice />,
             children: [
               { path: "reading", element: <UserReadingPractice /> }, // ✅ nested route
+              // { path: "listening", element: <ListeningModule /> }, // ✅ nested route
               { path: "listening", element: <ListeningPractice /> }, // ✅ nested route
             ],
           },
