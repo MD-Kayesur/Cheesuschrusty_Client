@@ -1,0 +1,37 @@
+import React from 'react';
+import { UserProgressBar } from './UserProgressBar';
+ 
+interface StatCardProps {
+  title: string;
+  value: number | string;
+  total?: number;
+  icon: React.FC<any>;
+  iconColor: string;
+  progressBarColor?: string;
+  unit?: string;
+}
+
+export const UserStatCard: React.FC<StatCardProps> = ({
+  title,
+  value,
+  total,
+  icon: Icon,
+  iconColor,
+  progressBarColor,
+  unit = '',
+}) => {
+  const isFraction = typeof total === 'number';
+  const displayValue = isFraction ? `${value}/${total}` : value + unit;
+
+  return (
+    <div className="bg-white rounded-xl  p-5 border border-gray-200 shadow-sm">
+      <div className="flex  justify-between items-center   mb-2">
+       
+        <span className="text-[#A7A7A7] font-medium text-base">{title}</span>
+         <Icon className={`w-8 h-8 ${iconColor}`} />
+      </div>
+      <div className="text-4xl font-bold text-[#333] mb-2">{displayValue}</div>
+      {isFraction && total && <UserProgressBar value={value as number} max={total} color={progressBarColor} />}
+    </div>
+  );
+};

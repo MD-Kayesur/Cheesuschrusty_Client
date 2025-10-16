@@ -1,0 +1,153 @@
+
+import React, { useState } from 'react';
+import { RotateCcw } from 'lucide-react';
+
+interface ListeningDictationProps {
+  continueCallback: () => void;
+}
+
+const ListeningDictation: React.FC<ListeningDictationProps> = ({ continueCallback }) => {
+  const [text, setText] = useState('');
+  const targetWords = 30;
+
+  const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.target.value);
+  };
+
+  const handleClearText = () => {
+    setText('');
+  };
+
+  const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+
+  return (
+    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+      {/* Instruction */}
+      <div className="bg-gray-100 rounded-lg p-4 mb-6">
+        <p className="text-gray-800 font-medium">Listen carefully and write what you hear</p>
+      </div>
+
+      {/* Text Area */}
+      <div className="mb-4">
+        <textarea
+          value={text}
+          onChange={handleTextChange}
+          placeholder="Type what you hear here..."
+          className="w-full h-40 p-4 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800 placeholder-gray-400"
+        />
+      </div>
+
+      {/* Word Count */}
+      <div className="flex justify-between items-center mb-6">
+        <span className="text-sm text-gray-600">
+          Words Written: <span className="font-medium">{wordCount}</span>
+        </span>
+        <span className="text-sm text-gray-600">
+          Target: <span className="font-medium">{targetWords}</span>
+        </span>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex justify-center gap-4">
+        <button
+          onClick={handleClearText}
+          className="px-8 py-3 border-2 border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+        >
+          Clear Text
+        </button>
+        <button
+          onClick={continueCallback}
+          className="px-8 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default ListeningDictation;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState } from 'react';
+
+// const ListeningDictation: React.FC = () => {
+//   const [text, setText] = useState('');
+//   const targetWords = 30;
+
+//   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+//     setText(e.target.value);
+//   };
+
+//   const handleClearText = () => {
+//     setText('');
+//   };
+
+//   const handleContinue = () => {
+//     // Handle continue action
+//     console.log('Continue clicked with text:', text);
+//   };
+
+//   const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+
+//   return (
+//     <div className="max-w-4xl mx-auto p-6 bg-white">
+//       {/* Instruction */}
+//       <div className="bg-gray-100 rounded-lg p-4 mb-6">
+//         <p className="text-gray-800 font-medium">Listen carefully and write what you hear</p>
+//       </div>
+
+//       {/* Text Area */}
+//       <div className="mb-4">
+//         <textarea
+//           value={text}
+//           onChange={handleTextChange}
+//           placeholder="Type what you hear here...."
+//           className="w-full h-40 p-4 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800 placeholder-gray-400"
+//         />
+//       </div>
+
+//       {/* Word Count */}
+//       <div className="flex justify-between items-center mb-6">
+//         <span className="text-sm text-gray-600">
+//           Word Written: <span className="font-medium">{wordCount}</span>
+//         </span>
+//         <span className="text-sm text-gray-600">
+//           Target: <span className="font-medium">{targetWords}</span>
+//         </span>
+//       </div>
+
+//       {/* Action Buttons */}
+//       <div className="flex justify-center gap-4">
+//         <button
+//           onClick={handleClearText}
+//           className="px-8 py-3 border-2 border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+//         >
+//           Clear Text
+//         </button>
+//         <button
+//           onClick={handleContinue}
+//           className="px-8 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+//         >
+//           Continue
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ListeningDictation;
