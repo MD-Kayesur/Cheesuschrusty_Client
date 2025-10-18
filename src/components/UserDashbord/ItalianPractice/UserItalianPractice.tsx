@@ -71,6 +71,26 @@ const UserItalianPractice: React.FC = () => {
       iconBg: "bg-white",
       path: "listening",
     },
+    {
+      icon: <Headphones className="w-5 h-5 text-orange-600" />,
+      title: "Writing",
+      subtitle: "Audio comprehension",
+      duration: "8 min",
+      progress: 50,
+      bgColor: "bg-orange-50",
+      iconBg: "bg-white",
+      path: "Writing",
+    },
+    {
+      icon: <Headphones className="w-5 h-5 text-orange-600" />,
+      title: "Soeaking",
+      subtitle: "Audio comprehension",
+      duration: "8 min",
+      progress: 50,
+      bgColor: "bg-orange-50",
+      iconBg: "bg-white",
+      path: "Speaking",
+    },
   ];
 
   return (
