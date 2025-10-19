@@ -90,14 +90,14 @@ export const UserOverview: React.FC = () => {
               iconColor="text-green-500"
               value={stats.lessonsCompleted}
               total={stats.totalLessons}
-              progressBarColor="bg-green-500"
+              progressBarColor="bg-[#0B5FFF]"
             />
             <UserStatCard
               title="Accuracy Rate"
               icon={Target}
               iconColor="text-red-500"
               value={stats.accuracyRate}
-              progressBarColor="bg-indigo-500"
+              progressBarColor="bg-[#0B5FFF]"
               unit="%"
             />
             <UserStatCard
@@ -106,7 +106,7 @@ export const UserOverview: React.FC = () => {
               iconColor="text-orange-500"
               value={stats.wordsLearned}
               total={stats.totalWords}
-              progressBarColor="bg-orange-500"
+              progressBarColor="bg-[#0B5FFF]"
             />
           </div>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 ">

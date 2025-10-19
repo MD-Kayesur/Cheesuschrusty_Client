@@ -9,7 +9,7 @@ const ExercisesContainer: React.FC = () => {
   const handlePrev = () => setCurrentExercise((prev) => Math.max(1, prev - 1));
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen    ">
       {currentExercise === 1 && (
         <WritingPractice onNext={handleNext} />
       )}

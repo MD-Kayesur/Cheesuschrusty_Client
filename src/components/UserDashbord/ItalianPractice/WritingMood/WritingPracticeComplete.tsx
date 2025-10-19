@@ -1,13 +1,9 @@
  
 
 
-
-
-
-
-
 import React from 'react';
 import { ChevronLeft, Check, TrendingUp, Target, Lightbulb, BookOpen, RotateCcw } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface ExercisePerformance {
   name: string;
@@ -27,6 +23,9 @@ interface StudyPlanItem {
 }
 
 const WritingPracticeComplete: React.FC = () => {
+
+const navigate =useNavigate()
+
   const exercisePerformance: ExercisePerformance[] = [
     { name: 'Audio Comprehension', score: 8, percentage: 80 },
     { name: 'Dictation Exercise', score: 6, percentage: 60 },
@@ -80,13 +79,10 @@ const WritingPracticeComplete: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen    p-6">
+      <div className="  mx-auto">
         {/* Back Button */}
-        <button className="flex items-center gap-2 px-4 py-2 mb-6 border border-gray-300 rounded-full hover:bg-white transition-colors bg-white">
-          <ChevronLeft className="w-4 h-4" />
-          <span className="text-sm font-medium">Back To Practice</span>
-        </button>
+        
 
         {/* Success Icon and Title */}
         <div className="text-center mb-8">
@@ -205,11 +201,11 @@ const WritingPracticeComplete: React.FC = () => {
 
         {/* Action Buttons */}
         <div className="flex justify-center gap-4">
-          <button className="px-6 py-3 border-2 border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-white transition-colors flex items-center gap-2 bg-white">
+          <button onClick={() => navigate("/user/practice")} className="px-6 py-3 cursor-pointer border-2 border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-white transition-colors flex items-center gap-2 bg-white">
             <RotateCcw className="w-5 h-5" />
             Practice Again
           </button>
-          <button className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center gap-2">
+          <button className="px-6 cursor-pointer py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center gap-2">
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
               <path d="M8 5v14l11-7z" />
             </svg>

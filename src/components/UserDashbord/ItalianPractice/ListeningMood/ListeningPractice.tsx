@@ -1,12 +1,16 @@
+
+
+
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Headphones } from 'lucide-react';
- 
+import { ChevronLeft } from 'lucide-react';
 import ListeningDictation from './ListeningDictation';
 import SentenceOrdering from './SentenceOrdering';
 import ListeningPracticeComplete from './ListeningPracticeComplete';
-import AudioPlayerComponent from './AudioPlayerComponent ';
-
+import { ProgressBar } from '@/components/ProgressBar/ProgressBar';
+import { AudioPlayerComponent } from './AudioPlayerComponent ';
+ 
 interface Question {
   id: number;
   question: string;
@@ -16,16 +20,8 @@ interface Question {
 
 const ListeningPractice: React.FC = () => {
   const navigate = useNavigate();
+  const audioSrc = "../../../../../public/videoplayback.m4a";
 
-  // Audio & playback state
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(150);
-  const [speed, setSpeed] = useState(1);
-  const [volume, setVolume] = useState(0.7);
-  const [isMuted, setIsMuted] = useState(false);
-
-  // Question & phase state
   const [questions, setQuestions] = useState<Question[]>([
     { id: 1, question: "Che cosa ordina Marco?", options: ["Un cappuccino", "Un caffè", "Un cornetto", "Un tè"], selectedAnswer: null },
     { id: 2, question: "Dove si svolge la conversazione?", options: ["In un ristorante", "In un bar", "In una pizzeria", "In un supermercato"], selectedAnswer: null },
@@ -33,10 +29,10 @@ const ListeningPractice: React.FC = () => {
     { id: 4, question: "Con chi ha l'appuntamento Marco?", options: ["Con il suo capo", "Con un amico", "Con un cliente", "Con sua sorella"], selectedAnswer: null },
     { id: 5, question: "Quanto costa il caffè?", options: ["1 euro", "1.50 euro", "2 euro", "2.50 euro"], selectedAnswer: null },
   ]);
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [phase, setPhase] = useState<'questions' | 'dictation' | 'sentence' | 'complete'>('questions');
 
-  // Handlers
   const handleOptionSelect = (option: string) => {
     const updated = [...questions];
     updated[currentQuestion].selectedAnswer = option;
@@ -58,127 +54,92 @@ const ListeningPractice: React.FC = () => {
   const handleDictationContinue = () => setPhase('sentence');
   const handleSentenceComplete = () => setPhase('complete');
 
-  // Audio handlers
-  const handlePlayPause = () => setIsPlaying(!isPlaying);
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => setCurrentTime(parseFloat(e.target.value));
-  const handleSpeedChange = (inc: boolean) => setSpeed(prev => inc ? Math.min(prev + 0.25, 2) : Math.max(prev - 0.25, 0.5));
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const v = parseFloat(e.target.value);
-    setVolume(v);
-    if (v > 0) setIsMuted(false);
-  };
-  const toggleMute = () => setIsMuted(!isMuted);
-
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <div className="mx-auto max-w-4xl">
-
+      <div className="mx-auto">
         {phase !== 'complete' && (
           <>
-            {/* Back Button */}
             <button
-              onClick={() => navigate("/user/practice")}
-              className="flex items-center gap-2 text-gray-700 hover:text-gray-900 mb-4"
-            >
-              <ChevronLeft className="w-4 h-4" />
-              <span className="text-sm">Back To Practice</span>
-            </button>
+            onClick={() => navigate("/user/practice")}
+            className="flex border p-3 cursor-pointer rounded-2xl items-center gap-2 text-gray-700 hover:text-gray-900 mb-4"
+          >
+            <ChevronLeft className="w-6 h-6" />
+            <span className="text-base font-semibold">Back To Practice</span>
+          </button>
 
-            {/* Audio Player */}
-            <AudioPlayerComponent
-              isPlaying={isPlaying}
-              currentTime={currentTime}
-              duration={duration}
-              speed={speed}
-              volume={volume}
-              isMuted={isMuted}
-              handlePlayPause={handlePlayPause}
-              handleSeek={handleSeek}
-              handleSpeedChange={handleSpeedChange}
-              toggleMute={toggleMute}
-              handleVolumeChange={handleVolumeChange}
-            />
+            <AudioPlayerComponent src={audioSrc} />
 
-         
+            {phase === 'questions' && (
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+                <ProgressBar
+                  current={currentQuestion}
+                  total={questions.length}
+                  label="Question"
+                  color="bg-black"
+                />
 
-{phase === 'questions' && (
-  <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-    {/* Question Progress */}
-    <div className="mb-4">
-      <div className="text-xs text-gray-600 mb-2">
-        Question {currentQuestion + 1} of {questions.length}
-      </div>
-      <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-        <div
-          className="h-full bg-indigo-600 transition-all duration-300"
-          style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
-        />
-      </div>
-    </div>
+                <div className="bg-gray-50 rounded-lg p-4 mb-4">
+                  <h3 className="font-medium text-gray-900">{questions[currentQuestion].question}</h3>
+                </div>
 
-    {/* Question */}
-    <div className="bg-gray-50 rounded-lg p-4 mb-4">
-      <h3 className="font-medium text-gray-900">{questions[currentQuestion].question}</h3>
-    </div>
+                <div className="space-y-3 mb-6">
+                  {questions[currentQuestion].options.map((option, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => handleOptionSelect(option)}
+                      className={`w-full text-left px-4 py-3 border-2 rounded-lg  transition-colors cursor-pointer ${
+                        questions[currentQuestion].selectedAnswer === option
+                          ? 'border-indigo-600 bg-indigo-50'
+                          : 'bg-white border-gray-200 hover:border-indigo-600 hover:bg-indigo-50'
+                      }`}
+                    >
+                      <span className="font-semibold text-gray-900">
+                        {String.fromCharCode(65 + idx)}.
+                      </span>
+                      <span className="ml-2 text-gray-700">{option}</span>
+                    </button>
+                  ))}
+                </div>
 
-    {/* Answer Options */}
-    <div className="space-y-3 mb-6">
-      {questions[currentQuestion].options.map((option, idx) => (
-        <button
-          key={idx}
-          onClick={() => handleOptionSelect(option)}
-          className={`w-full text-left px-4 py-3 border-2 rounded-lg transition-colors ${
-            questions[currentQuestion].selectedAnswer === option
-              ? 'border-indigo-600 bg-indigo-50'
-              : 'bg-white border-gray-200 hover:border-indigo-600 hover:bg-indigo-50'
-          }`}
-        >
-          <span className="font-semibold text-gray-900">{String.fromCharCode(65 + idx)}.</span>
-          <span className="ml-2 text-gray-700">{option}</span>
-        </button>
-      ))}
-    </div>
+                <div className="flex justify-center gap-6">
+                  <button
+                    onClick={handlePreviousQuestion}
+                    disabled={currentQuestion === 0}
+                    className={`px-6 py-3 border-2 rounded-lg font-medium flex items-center gap-2 transition-colors cursor-pointer ${
+                      currentQuestion === 0
+                        ? 'border-gray-200 text-gray-400 cursor-not-allowed'
+                        : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    <ChevronLeft className="w-4 h-4" /> Previous
+                  </button>
 
-    {/* Navigation Buttons */}
-    <div className="flex justify-center gap-6">
-      <button
-        onClick={handlePreviousQuestion}
-        disabled={currentQuestion === 0}
-        className={`px-6 py-3 border-2 rounded-lg font-medium flex items-center gap-2 transition-colors ${
-          currentQuestion === 0
-            ? 'border-gray-200 text-gray-400 cursor-not-allowed'
-            : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-        }`}
-      >
-        <ChevronLeft className="w-4 h-4" /> Previous
-      </button>
+                  <button
+                    onClick={handleNextQuestion}
+                    disabled={!questions[currentQuestion].selectedAnswer}
+                    className={`px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-colors cursor-pointer ${
+                      !questions[currentQuestion].selectedAnswer
+                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                        : 'bg-blue-600 text-white hover:bg-blue-700'
+                    }`}
+                  >
+                    {currentQuestion === questions.length - 1 ? 'Finish' : 'Next'}
+                    <ChevronLeft className="w-4 h-4 rotate-180" />
+                  </button>
+                </div>
+              </div>
+            )}
 
-      <button
-        onClick={handleNextQuestion}
-        disabled={!questions[currentQuestion].selectedAnswer}
-        className={`px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-colors ${
-          !questions[currentQuestion].selectedAnswer
-            ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-            : 'bg-blue-600 text-white hover:bg-blue-700'
-        }`}
-      >
-        {currentQuestion === questions.length - 1 ? 'Finish' : 'Next'}
-        <ChevronLeft className="w-4 h-4 rotate-180" />
-      </button>
-    </div>
-  </div>
-)}
+            {phase === 'dictation' && (
+              <ListeningDictation continueCallback={handleDictationContinue} />
+            )}
 
-
-
-
-
-            {phase === 'dictation' && <ListeningDictation continueCallback={handleDictationContinue} />}
-            {phase === 'sentence' && <SentenceOrdering continueCallback={handleSentenceComplete} />}
+            {phase === 'sentence' && (
+              <SentenceOrdering continueCallback={handleSentenceComplete} />
+            )}
           </>
         )}
 
-        {/* Complete Page */}
         {phase === 'complete' && <ListeningPracticeComplete />}
       </div>
     </div>
@@ -186,6 +147,221 @@ const ListeningPractice: React.FC = () => {
 };
 
 export default ListeningPractice;
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { ChevronLeft, Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Headphones } from 'lucide-react';
+//  import ReactPlayer from 'react-player';
+// import ListeningDictation from './ListeningDictation';
+// import SentenceOrdering from './SentenceOrdering';
+// import ListeningPracticeComplete from './ListeningPracticeComplete';
+//  import { ProgressBar } from '@/components/ProgressBar/ProgressBar';
+// import { AudioPlayerComponent } from './AudioPlayerComponent ';
+
+// interface Question {
+//   id: number;
+//   question: string;
+//   options: string[];
+//   selectedAnswer: string | null;
+// }
+
+// const ListeningPractice: React.FC = () => {
+//   const navigate = useNavigate();
+//   const audioSrc = "../../../../../public//videoplayback.m4a"; // <--- CHANGE THIS PATH
+
+//   // Audio & playback state
+//   const [isPlaying, setIsPlaying] = useState(false);
+//   const [currentTime, setCurrentTime] = useState(0);
+//   const [duration, setDuration] = useState(150);
+//   const [speed, setSpeed] = useState(1);
+//   const [volume, setVolume] = useState(0.7);
+//   const [isMuted, setIsMuted] = useState(false);
+
+//   // Question & phase state
+//   const [questions, setQuestions] = useState<Question[]>([
+//     { id: 1, question: "Che cosa ordina Marco?", options: ["Un cappuccino", "Un caffè", "Un cornetto", "Un tè"], selectedAnswer: null },
+//     { id: 2, question: "Dove si svolge la conversazione?", options: ["In un ristorante", "In un bar", "In una pizzeria", "In un supermercato"], selectedAnswer: null },
+//     { id: 3, question: "A che ora è l'appuntamento di Marco?", options: ["Alle 9:00", "Alle 10:00", "Alle 11:00", "Alle 12:00"], selectedAnswer: null },
+//     { id: 4, question: "Con chi ha l'appuntamento Marco?", options: ["Con il suo capo", "Con un amico", "Con un cliente", "Con sua sorella"], selectedAnswer: null },
+//     { id: 5, question: "Quanto costa il caffè?", options: ["1 euro", "1.50 euro", "2 euro", "2.50 euro"], selectedAnswer: null },
+//   ]);
+//   const [currentQuestion, setCurrentQuestion] = useState(0);
+//   const [phase, setPhase] = useState<'questions' | 'dictation' | 'sentence' | 'complete'>('questions');
+
+//   // Handlers
+//   const handleOptionSelect = (option: string) => {
+//     const updated = [...questions];
+//     updated[currentQuestion].selectedAnswer = option;
+//     setQuestions(updated);
+//   };
+
+//   const handleNextQuestion = () => {
+//     if (currentQuestion < questions.length - 1) {
+//       setCurrentQuestion(currentQuestion + 1);
+//     } else {
+//       setPhase('dictation');
+//     }
+//   };
+
+//   const handlePreviousQuestion = () => {
+//     if (currentQuestion > 0) setCurrentQuestion(currentQuestion - 1);
+//   };
+
+//   const handleDictationContinue = () => setPhase('sentence');
+//   const handleSentenceComplete = () => setPhase('complete');
+
+//   // Audio handlers
+//   const handlePlayPause = () => setIsPlaying(!isPlaying);
+//   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => setCurrentTime(parseFloat(e.target.value));
+//   const handleSpeedChange = (inc: boolean) => setSpeed(prev => inc ? Math.min(prev + 0.25, 2) : Math.max(prev - 0.25, 0.5));
+//   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     const v = parseFloat(e.target.value);
+//     setVolume(v);
+//     if (v > 0) setIsMuted(false);
+//   };
+//   const toggleMute = () => setIsMuted(!isMuted);
+
+//   return (
+//     <div className="min-h-screen bg-gray-50 p-6">
+//       <div className="mx-auto  ">
+
+//         {phase !== 'complete' && (
+//           <>
+//             {/* Back Button */}
+//             <button
+//               onClick={() => navigate("/user/practice")}
+//               className="flex items-center gap-2 text-gray-700 hover:text-gray-900 mb-4"
+//             >
+//               <ChevronLeft className="w-4 h-4" />
+//               <span className="text-sm">Back To Practice</span>
+//             </button>
+
+//             {/* Audio Player */}
+//              <AudioPlayerComponent src={audioSrc} />
+//              import ReactPlayer from 'react-player';
+
+// // ... inside your component
+// {/* <ReactPlayer
+//   url={src} // Your YouTube link goes here
+//   playing={isPlaying}
+//   onPlay={() => setIsPlaying(true)}
+//   onPause={() => setIsPlaying(false)}
+//   playbackRate={speed}
+//   volume={volume}
+//   muted={isMuted}
+//   // ... other props for seeking, duration, etc.
+//   width='0' // Hide the video/visual component
+//   height='0'
+// /> */}
+// // ...
+
+         
+
+// {phase === 'questions' && (
+//   <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+//     {/* Question Progress */}
+//     {/* <div className="mb-4">
+//       <div className="text-xs text-gray-600 mb-2">
+//         Question {currentQuestion + 1} of {questions.length}
+//       </div>
+//       <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+//         <div
+//           className="h-full bg-indigo-600 transition-all duration-300"
+//           style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
+//         />
+//       </div>
+//     </div> */}
+
+//    <ProgressBar
+//         current={currentQuestion}
+//         total={questions.length}
+//         label="Question"
+//         color="bg-black"
+//       />
+
+
+//     {/* Question */}
+//     <div className="bg-gray-50 rounded-lg p-4 mb-4">
+//       <h3 className="font-medium text-gray-900">{questions[currentQuestion].question}</h3>
+//     </div>
+
+//     {/* Answer Options */}
+//     <div className="space-y-3 mb-6">
+//       {questions[currentQuestion].options.map((option, idx) => (
+//         <button
+//           key={idx}
+//           onClick={() => handleOptionSelect(option)}
+//           className={`w-full text-left px-4 py-3 border-2 rounded-lg transition-colors ${
+//             questions[currentQuestion].selectedAnswer === option
+//               ? 'border-indigo-600 bg-indigo-50'
+//               : 'bg-white border-gray-200 hover:border-indigo-600 hover:bg-indigo-50'
+//           }`}
+//         >
+//           <span className="font-semibold text-gray-900">{String.fromCharCode(65 + idx)}.</span>
+//           <span className="ml-2 text-gray-700">{option}</span>
+//         </button>
+//       ))}
+//     </div>
+
+//     {/* Navigation Buttons */}
+//     <div className="flex justify-center gap-6">
+//       <button
+//         onClick={handlePreviousQuestion}
+//         disabled={currentQuestion === 0}
+//         className={`px-6 py-3 border-2 rounded-lg font-medium flex items-center gap-2 transition-colors ${
+//           currentQuestion === 0
+//             ? 'border-gray-200 text-gray-400 cursor-not-allowed'
+//             : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+//         }`}
+//       >
+//         <ChevronLeft className="w-4 h-4" /> Previous
+//       </button>
+
+//       <button
+//         onClick={handleNextQuestion}
+//         disabled={!questions[currentQuestion].selectedAnswer}
+//         className={`px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-colors ${
+//           !questions[currentQuestion].selectedAnswer
+//             ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+//             : 'bg-blue-600 text-white hover:bg-blue-700'
+//         }`}
+//       >
+//         {currentQuestion === questions.length - 1 ? 'Finish' : 'Next'}
+//         <ChevronLeft className="w-4 h-4 rotate-180" />
+//       </button>
+//     </div>
+//   </div>
+// )}
+
+
+
+
+
+//             {phase === 'dictation' && <ListeningDictation continueCallback={handleDictationContinue} />}
+//             {phase === 'sentence' && <SentenceOrdering continueCallback={handleSentenceComplete} />}
+//           </>
+//         )}
+
+//         {/* Complete Page */}
+//         {phase === 'complete' && <ListeningPracticeComplete />}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ListeningPractice;
 
 
 

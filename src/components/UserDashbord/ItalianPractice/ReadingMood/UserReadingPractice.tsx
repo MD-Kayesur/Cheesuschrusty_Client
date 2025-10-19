@@ -4,8 +4,11 @@ import React, { useState } from "react";
 import { ChevronLeft, BookOpen, Volume2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ReadingExerciseComplete from "./ReadingExerciseComplete";
+import readingicon from "../../../../assets/Dashbord/darkreading.svg"
+import { MdOutlineTranslate } from "react-icons/md";
+import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
 
-interface Question {
+ interface Question {
   id: number;
   question: string;
   answers: string[];
@@ -88,20 +91,20 @@ const UserReadingPractice: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen  ">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="    ">
+        <div className="  mx-auto px-6 py-4">
           <button
             onClick={() => navigate("/user/practice")}
-            className="flex items-center gap-2 text-gray-700 hover:text-gray-900 mb-4"
+            className="flex border p-3 cursor-pointer rounded-2xl items-center gap-2 text-gray-700 hover:text-gray-900 mb-4"
           >
-            <ChevronLeft className="w-4 h-4" />
-            <span className="text-sm">Back To Practice</span>
+            <ChevronLeft className="w-6 h-6" />
+            <span className="text-base font-semibold">Back To Practice</span>
           </button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Reading Practice</h1>
-            <p className="text-sm text-gray-500 mt-1">
+            <h1 className="text-4xl mt-9 font-bold text-gray-900">Reading Practice</h1>
+            <p className="text-xl text-[#7E7E7E] mt-3">
               Improve your Italian reading comprehension
             </p>
           </div>
@@ -109,26 +112,26 @@ const UserReadingPractice: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="  mx-auto px-6 py-8">
+        <div className=" flex flex-col md:flex-row gap-6">
           {/* Reading Passage */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
+          <div className="bg-white max-h-auto flex-1 flex flex-col gap-4 rounded-lg shadow-sm p-6">
             <div className="flex items-start justify-between mb-6">
               <div className="flex items-center gap-3">
-                <div className="bg-gray-900 rounded-lg p-2">
-                  <BookOpen className="w-5 h-5 text-white" />
+                <div className="  rounded-lg ">
+                   <img className="w-8 h-8" src={readingicon} alt="" />
                 </div>
-                <h2 className="text-lg font-semibold text-gray-900">
+                <h2 className="text-xl font-semibold text-[#3C424E ]">
                   La Vita Universitaria in Italia
                 </h2>
               </div>
-              <button className="flex items-center gap-2 px-3 py-1.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                <Volume2 className="w-4 h-4 text-gray-600" />
-                <span className="text-sm text-gray-700">Show Translation</span>
+              <button className="flex cursor-pointer items-center gap-2 px-3 py-1.5 border border-[#1C1B1F] rounded-lg hover:bg-gray-50 transition-colors">
+                <MdOutlineTranslate className="w-4 h-4 text-gray-600" />
+                <span className="text-sm text-[#3C424E]">Show Translation</span> 
               </button>
             </div>
 
-            <div className="space-y-4 text-gray-700 leading-relaxed">
+            <div className="space-y-4   text-[#7E7E7E] leading-relaxed">
               <p>
                 L'università italiana ha una lunga tradizione che risale al
                 Medioevo. Molte università italiane, come l'Università di
@@ -156,7 +159,7 @@ const UserReadingPractice: React.FC = () => {
           </div>
 
           {/* Right Side */}
-          <div className="bg-white rounded-lg shadow-sm p-6">
+          <div className="bg-white flex-1  rounded-lg shadow-sm p-6">
             {isComplete ? (
               <ReadingExerciseComplete answers={resultAnswers} />
             ) : (
@@ -168,21 +171,33 @@ const UserReadingPractice: React.FC = () => {
                       Question {currentQuestionIndex + 1} of {totalQuestions}
                     </span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
+                  {/* <div className="w-full bg-gray-200 rounded-full h-2">
                     <div
                       className="bg-blue-600 h-2 rounded-full transition-all duration-500"
                       style={{ width: `${progressPercentage}%` }}
                     />
-                  </div>
+                  </div> */}
+
+
+<ProgressBar
+  progress={progressPercentage}   // replace inline width
+  color="bg-black"             // fill color
+  height="h-3"                    // height of the bar
+  rounded="rounded-full"          // rounded corners
+  // showPercentage={true}           // optional numeric % display
+  className="mb-2"                // optional wrapper spacing
+/>
+
+
                 </div>
 
                 {/* Question */}
                 <div className="mb-8">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-6">
+                  <h3 className="text-lg bg-[#EBEBEB] py-6 px-4 font-semibold text-gray-900 rounded-xl mb-6">
                     {currentQuestion.question}
                   </h3>
 
-                  <div className="space-y-3">
+                  <div className="space-y-5">
                     {currentQuestion.answers.map((answer, index) => (
                       <button
                         key={index}
@@ -197,7 +212,7 @@ const UserReadingPractice: React.FC = () => {
                           <span className="font-semibold text-gray-900">
                             {String.fromCharCode(65 + index)}.
                           </span>
-                          <span className="text-gray-700">{answer}</span>
+                          <span className="text-[#3C424E]">{answer}</span>
                         </div>
                       </button>
                     ))}
@@ -209,7 +224,7 @@ const UserReadingPractice: React.FC = () => {
                   <button
                     onClick={handlePrevious}
                     disabled={currentQuestionIndex === 0}
-                    className="flex-1 px-6 py-3 border border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 px-6 py-3 border border-[#111827] rounded-lg font-medium cursor-pointer text-gray-700 hover:bg-gray-50 text-base transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <ChevronLeft className="w-4 h-4" />
                     Previous
@@ -218,7 +233,7 @@ const UserReadingPractice: React.FC = () => {
                   <button
                     onClick={handleNext}
                     disabled={!selectedAnswer}
-                    className={`flex-1 px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors duration-300 ${
+                    className={`flex-1 px-6 py-3 cursor-pointer rounded-lg font-medium flex text-base items-center justify-center gap-2 transition-colors duration-300 ${
                       selectedAnswer
                         ? "bg-blue-600 text-white hover:bg-blue-700"
                         : "bg-gray-300 text-gray-500 cursor-not-allowed"

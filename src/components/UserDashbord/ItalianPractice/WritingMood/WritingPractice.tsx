@@ -8,6 +8,7 @@ import NavigationButtons from './NavigationButtons';
  import GrammarPractice from './GrammarPractice';
 import WritingPracticeComplete from './WritingPracticeComplete';
 import CompleteSentences from './CompleteSentences';
+import { useNavigate } from 'react-router-dom';
 
 type Phase = 'writing' | 'completeSentences' | 'grammar' | 'complete';
 
@@ -15,7 +16,7 @@ const WritingPractice: React.FC = () => {
   const [text, setText] = useState('');
   const [showTips, setShowTips] = useState(true);
   const [phase, setPhase] = useState<Phase>('writing');
-
+const navigate=useNavigate()
   const minWords = 80;
   const maxWords = 120;
   const prompt =
@@ -42,10 +43,11 @@ const WritingPractice: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen   p-6">
+      <div className="  mx-auto">
         <HeaderButton
           label="Back To Practice"
+          onClick={() => navigate("/user/practice")}
           icon={<ChevronLeft className="w-4 h-4" />}
         />
 
@@ -56,11 +58,14 @@ const WritingPractice: React.FC = () => {
 
         {phase === 'writing' && (
           <>
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm mb-4">
-              <ExerciseHeader
-                onToggleTips={() => setShowTips(!showTips)}
-                showTips={showTips}
-              />
+            <div className="  rounded-xl      mb-4">
+            <ExerciseHeader
+        title="Short Essay"
+        description="Write a short paragraph about the given topic."
+        progressLabel="Exercise 1/3" 
+        showTips={showTips}
+        onToggleTips={() => setShowTips(!showTips)}
+      />
               <WritingArea
                 prompt={prompt}
                 text={text}

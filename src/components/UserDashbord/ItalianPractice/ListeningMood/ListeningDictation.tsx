@@ -25,7 +25,7 @@ const ListeningDictation: React.FC<ListeningDictationProps> = ({ continueCallbac
   const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white">
+    <div className="  mx-auto p-6 bg-white">
       {/* Instruction */}
       <div className="bg-gray-100 rounded-lg p-4 mb-6">
         <p className="text-gray-800 font-medium">Listen carefully and write what you hear</p>
@@ -55,13 +55,13 @@ const ListeningDictation: React.FC<ListeningDictationProps> = ({ continueCallbac
       <div className="flex justify-center gap-4">
         <button
           onClick={handleClearText}
-          className="px-8 py-3 border-2 border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+          className="px-8 py-3 cursor-pointer border-2 border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors"
         >
           Clear Text
         </button>
         <button
           onClick={handleContinue}
-          className="px-8 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+          className="px-8 py-3 cursor-pointer bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
         >
           Continue
         </button>

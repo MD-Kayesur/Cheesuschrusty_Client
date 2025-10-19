@@ -1,3 +1,4 @@
+import { ProgressBar } from '@/components/ProgressBar/ProgressBar';
 import React from 'react';
 
 // Define a type for the detailed statistic items
@@ -48,12 +49,20 @@ const UserWeeklyProgressCard: React.FC<WeeklyProgressCardProps> = ({
         </div>
 
         {/* Progress Bar Track */}
-        <div className="w-full bg-gray-200 rounded-full h-2.5">
+        {/* <div className="w-full bg-gray-200 rounded-full h-2.5">
            <div
             className="bg-[#111827] h-3 rounded-full"
             style={{ width: `${clampedProgress}%` }}
           ></div>
-        </div>
+        </div> */}
+
+<ProgressBar 
+  progress={clampedProgress} 
+  color="bg-black" 
+   className='h-3'
+  // showPercentage
+  
+/>
       </div>
 
       {/* Stats Section */}

@@ -44,7 +44,7 @@ const SentenceOrdering: React.FC<SentenceOrderingProps> = ({ continueCallback })
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white">
+    <div className="  mx-auto p-6 bg-white">
       {/* Instruction */}
       <div className="bg-gray-100 rounded-lg p-4 mb-6">
         <p className="text-gray-800 font-medium">
@@ -101,14 +101,14 @@ const SentenceOrdering: React.FC<SentenceOrderingProps> = ({ continueCallback })
       <div className="flex justify-center gap-4">
         <button
           onClick={handleResetOrder}
-          className="px-8 py-3 border-2 border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-2"
+          className="px-8 py-3 cursor-pointer border-2 border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-2"
         >
           <RotateCcw className="w-4 h-4" />
           Reset Order
         </button>
         <button
           onClick={handleContinue}
-          className="px-8 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+          className="px-8 py-3 cursor-pointer bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
         >
           Continue
         </button>

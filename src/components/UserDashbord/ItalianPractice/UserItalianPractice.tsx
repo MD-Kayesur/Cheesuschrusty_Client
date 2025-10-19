@@ -1,14 +1,72 @@
-
 import React from "react";
-import { BookOpen, Headphones } from "lucide-react";
+ import { BookIcon, ClockIcon, TargetIcon, BookOpen, Headphones } from "lucide-react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+  import tatgeticon from "../../../assets/Dashbord/tergeticon.svg"
+  import readingicon from "../../../assets/Dashbord/reading.svg"
+  import lesteningicon from "../../../assets/Dashbord/listening.svg"
+  import writingicon from "../../../assets/Dashbord/writing.svg"
+  import speakingicon from "../../../assets/Dashbord/speaking.svg"
+ import { GiBookmarklet } from "react-icons/gi";
+import { FcReading } from "react-icons/fc";
+ 
+import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
+
+
+ 
+ 
+<ProgressBar
+  current={3}
+  total={10}
+  label="Question"
+  color="bg-blue-600"
+  showPercentage={true}
+/>
+
+ 
+const StatCard: React.FC<any> = ({ title, value, icon }) => {
+  return (
+    <div className="bg-white p-4 rounded-xl shadow-md flex flex-col justify-between">
+      <div className="flex justify-between items-start mb-2">
+        <p className="text-base text-[#A7A7A7]">{title}</p>
+        <span className="text-indigo-500 ">{icon}</span>
+      </div>
+      <p className="text-3xl font-semibold text-gray-800">{value}</p>
+    </div>
+  );
+};
+
+ 
+const DailyGoalProgress: React.FC<any> = ({ currentMinutes, totalMinutes, timeLeft }) => {
+    const percentage = Math.round((currentMinutes / totalMinutes) * 100);
+    return (
+        <div className="bg-[#0E9F6E1A] p-4 rounded-xl border border-[#0E9F6E33] shadow-sm mb-6">
+            <div className="flex justify-between items-start mb-2">
+                <div className="flex gap-3 items-center">
+                     <img  className="w-8 h-8" src={tatgeticon} alt="" />
+                    <div>
+                        <p className="text-base font-semibold text-[#111827]">Daily Goal Progress</p>
+                        <p className="text-sm text-[#585858]">{currentMinutes} of {totalMinutes} minutes completed</p>
+                    </div>
+                </div>
+                <div className="text-right">
+                  <p className="text-xl font-bold bg-gradient-to-b from-[#667EEA] to-[#764BA2] bg-clip-text text-transparent leading-none">
+    {percentage}%
+  </p>
+                    <p className="text-sm text-[#585858]">{timeLeft}</p>
+                </div>
+            </div>
+            <ProgressBar progress={percentage} color="bg-black" showPercentage={false} className="mt-4" />
+        </div>
+    );
+};
+// ----------------------------------------------------
 
 const SkillCard = ({ icon, title, subtitle, duration, progress, bgColor, iconBg, path }: any) => (
-  <div className={`${bgColor} rounded-xl p-6 shadow-sm`}>
+  <div className={`${bgColor} rounded-xl p-4 shadow-sm`}>
     <div className="flex items-start justify-between mb-4">
       <div className="flex items-center gap-3">
         <div className={`${iconBg} rounded-lg p-3 flex items-center justify-center`}>
-          {icon}
+         <img src={icon} alt="" />
         </div>
         <div>
           <h3 className="font-semibold text-gray-800">{title}</h3>
@@ -18,22 +76,21 @@ const SkillCard = ({ icon, title, subtitle, duration, progress, bgColor, iconBg,
       <span className="text-sm text-gray-600">{duration}</span>
     </div>
 
-    <div className="mb-3">
-      <div className="w-full bg-gray-300 rounded-full h-2">
-        <div
-          className="bg-gray-800 h-2 rounded-full transition-all duration-300"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
-    </div>
+    <ProgressBar
+      progress={progress}
+      color="bg-black"
+      showPercentage={false} // Removed showPercentage from here to use the custom text below
+      height="h-2" // Set a height for consistency
+      className="mb-2"
+    />
 
-    <div className="flex items-center justify-between mb-4">
+    <div className="flex items-center justify-between mb-4 mt-1">
       <span className="text-xs text-gray-600">{progress}% Completed</span>
     </div>
 
     <Link
       to={path}
-      className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-4 rounded-lg transition-colors"
+      className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-4 rounded-lg transition-colors inline-block"
     >
       Start Practice
     </Link>
@@ -42,9 +99,32 @@ const SkillCard = ({ icon, title, subtitle, duration, progress, bgColor, iconBg,
 
 const UserItalianPractice: React.FC = () => {
   const location = useLocation();
+  
+   const progressData = {
+    currentMinutes: 22,
+    totalMinutes: 30,
+    timeLeft: '8 min left',
+  };
 
-  // ✅ Nested route check
-  const isNested = location.pathname.startsWith("/user/practice/") && location.pathname !== "/user/practice";
+  const sessionsData = {
+    title: "Today's Sessions",
+    value: 3, 
+    icon: <GiBookmarklet className="w-8 h-8 text-green-700" />,
+  };
+
+  const studyTimeData = {
+    title: "Total Study Time",
+    value: '3/5', 
+    icon: <ClockIcon className="w-8 h-8" />,
+  };
+
+  const accuracyData = {
+    title: "Average Accuracy",
+    value: '88%',
+    icon: <TargetIcon className="w-8 h-8" />,
+  };
+  
+   const isNested = location.pathname.startsWith("/user/practice/") && location.pathname !== "/user/practice";
 
   if (isNested) {
     return <Outlet />;
@@ -52,56 +132,71 @@ const UserItalianPractice: React.FC = () => {
 
   const skills = [
     {
-      icon: <BookOpen className="w-5 h-5 text-blue-600" />,
+      icon:  readingicon,
       title: "Reading",
       subtitle: "Comprehension practice",
       duration: "8 min",
       progress: 70,
       bgColor: "bg-blue-50",
-      iconBg: "bg-white",
+     iconBg: "bg-gradient-to-r from-[#0B5FFF] to-[#6C9AF0]",
       path: "reading",
     },
     {
-      icon: <Headphones className="w-5 h-5 text-orange-600" />,
+      icon: lesteningicon,
       title: "Listening",
       subtitle: "Audio comprehension",
       duration: "8 min",
       progress: 50,
       bgColor: "bg-orange-50",
-      iconBg: "bg-white",
+    //  iconBg: "bg-gradient-to-r from-[#BA0BFF] to-[#E19FFB]",
       path: "listening",
     },
     {
-      icon: <Headphones className="w-5 h-5 text-orange-600" />,
+      icon: writingicon,
       title: "Writing",
-      subtitle: "Audio comprehension",
-      duration: "8 min",
-      progress: 50,
-      bgColor: "bg-orange-50",
-      iconBg: "bg-white",
-      path: "Writing",
+      subtitle: "Sentence composition", // Updated subtitle
+      duration: "10 min", // Updated duration
+      progress: 30, // Updated progress
+      bgColor: "bg-green-50", // Updated color
+      iconBg: "bg-gradient-to-r from-[#0E9F6E] to-[#11D090]",
+      path: "writing",
     },
     {
-      icon: <Headphones className="w-5 h-5 text-orange-600" />,
-      title: "Soeaking",
-      subtitle: "Audio comprehension",
-      duration: "8 min",
-      progress: 50,
-      bgColor: "bg-orange-50",
-      iconBg: "bg-white",
-      path: "Speaking",
+      icon: speakingicon,
+      title: "Speaking", // Corrected typo
+      subtitle: "Pronunciation and fluency", // Updated subtitle
+      duration: "12 min", // Updated duration
+      progress: 80, // Updated progress
+      bgColor: "bg-red-50", // Updated color
+      iconBg: "bg-gradient-to-r from-[#BA0BFF] to-[#E19FFB]",
+      path: "speaking", // Corrected path
     },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="mx-auto">
+    <div className="min-h-screen   p-6">
+      <div className="mx-auto  "> {/* Added max-width for better centering */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Practice Italian</h1>
           <p className="text-gray-600">Choose a skill to practice and improve your Italian proficiency</p>
         </div>
 
-        <div className="grid grid-cols-2 gap-6">
+        {/* 1. Daily Goal Progress - Passing props */}
+        <DailyGoalProgress
+          currentMinutes={progressData.currentMinutes}
+          totalMinutes={progressData.totalMinutes}
+          timeLeft={progressData.timeLeft}
+        />
+
+        {/* 2. Stat Cards - Passing props and using a grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <StatCard {...sessionsData} />
+            <StatCard {...studyTimeData} />
+            <StatCard {...accuracyData} />
+        </div>
+
+        {/* 3. Skill Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {skills.map((skill, index) => (
             <SkillCard key={index} {...skill} />
           ))}
@@ -112,6 +207,130 @@ const UserItalianPractice: React.FC = () => {
 };
 
 export default UserItalianPractice;
+
+
+
+
+
+
+
+
+
+// import React from "react";
+// import { BookOpen, Headphones } from "lucide-react";
+// import { Link, Outlet, useLocation } from "react-router-dom";
+// import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
+
+// const SkillCard = ({ icon, title, subtitle, duration, progress, bgColor, iconBg, path }: any) => (
+//   <div className={`${bgColor} rounded-xl p-6 shadow-sm`}>
+//     <div className="flex items-start justify-between mb-4">
+//       <div className="flex items-center gap-3">
+//         <div className={`${iconBg} rounded-lg p-3 flex items-center justify-center`}>
+//           {icon}
+//         </div>
+//         <div>
+//           <h3 className="font-semibold text-gray-800">{title}</h3>
+//           <p className="text-sm text-gray-500">{subtitle}</p>
+//         </div>
+//       </div>
+//       <span className="text-sm text-gray-600">{duration}</span>
+//     </div>
+
+    
+// <ProgressBar
+//   progress={progress}
+//   color="bg-black"
+//   showPercentage
+//   className="mb-2"
+// />
+
+//     <div className="flex items-center justify-between mb-4">
+//       <span className="text-xs text-gray-600">{progress}% Completed</span>
+//     </div>
+
+//     <Link
+//       to={path}
+//       className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-4 rounded-lg transition-colors"
+//     >
+//       Start Practice
+//     </Link>
+//   </div>
+// );
+
+// const UserItalianPractice: React.FC = () => {
+//   const location = useLocation();
+
+//   // ✅ Nested route check
+//   const isNested = location.pathname.startsWith("/user/practice/") && location.pathname !== "/user/practice";
+
+//   if (isNested) {
+//     return <Outlet />;
+//   }
+
+//   const skills = [
+//     {
+//       icon: <BookOpen className="w-5 h-5 text-blue-600" />,
+//       title: "Reading",
+//       subtitle: "Comprehension practice",
+//       duration: "8 min",
+//       progress: 70,
+//       bgColor: "bg-blue-50",
+//       iconBg: "bg-white",
+//       path: "reading",
+//     },
+//     {
+//       icon: <Headphones className="w-5 h-5 text-orange-600" />,
+//       title: "Listening",
+//       subtitle: "Audio comprehension",
+//       duration: "8 min",
+//       progress: 50,
+//       bgColor: "bg-orange-50",
+//       iconBg: "bg-white",
+//       path: "listening",
+//     },
+//     {
+//       icon: <Headphones className="w-5 h-5 text-orange-600" />,
+//       title: "Writing",
+//       subtitle: "Audio comprehension",
+//       duration: "8 min",
+//       progress: 50,
+//       bgColor: "bg-orange-50",
+//       iconBg: "bg-white",
+//       path: "Writing",
+//     },
+//     {
+//       icon: <Headphones className="w-5 h-5 text-orange-600" />,
+//       title: "Soeaking",
+//       subtitle: "Audio comprehension",
+//       duration: "8 min",
+//       progress: 50,
+//       bgColor: "bg-orange-50",
+//       iconBg: "bg-white",
+//       path: "Speaking",
+//     },
+//   ];
+
+//   return (
+//     <div className="min-h-screen bg-gray-50 p-6">
+//       <div className="mx-auto">
+//         <div className="mb-8">
+//           <h1 className="text-3xl font-bold text-gray-900 mb-2">Practice Italian</h1>
+//           <p className="text-gray-600">Choose a skill to practice and improve your Italian proficiency</p>
+//         </div>
+
+
+
+//         <div className="grid grid-cols-2 gap-6">
+//           {skills.map((skill, index) => (
+//             <SkillCard key={index} {...skill} />
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default UserItalianPractice;
 
 
 

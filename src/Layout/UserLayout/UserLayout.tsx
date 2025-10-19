@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { UserSidebar } from "./UserSidebar";
 import { Outlet } from "react-router-dom";
-
+import { LayoutNavber } from "../LayoutNavber";
+import adminimg from "../../assets/adminimg.svg";
+import themeicon from "../../assets/Component 10.svg";
 export default function UserLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const handleclick =()=>{
+alert("clicked")
 
+  }
   return (
-    <div className="flex h-screen bg-[#F5F5F5]">
+    <div className="flex h-screen  bg-[#F5F5F5]">
       <UserSidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
       <div className="flex-1 flex flex-col overflow-hidden relative">
@@ -20,7 +25,13 @@ export default function UserLayout() {
             </button>
           </div>
         )}
-
+<LayoutNavber
+  userImage={adminimg}
+  userName="Darlene Robertson"
+  userRole="Admin"
+  themeIcon={themeicon}
+  onThemeClick={handleclick}
+/>
         <div className="flex-1 overflow-auto p-4">
           <Outlet/> {/* ✅ This is where nested pages render */}
         </div>

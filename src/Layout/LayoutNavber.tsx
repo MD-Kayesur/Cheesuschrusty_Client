@@ -16,7 +16,7 @@ export const LayoutNavber: React.FC<UserHeaderProps> = ({
   onThemeClick,
 }) => {
   return (
-    <div className="px-10 border-b border-[#C6C8CB] py-4 flex items-center justify-between">
+    <div className="px-10 border-b border-[#C6C8CB] py-5 flex items-center justify-between">
       {/* Left Side: User Info */}
       <div className="flex items-center gap-3">
         <img

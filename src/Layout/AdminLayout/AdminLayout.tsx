@@ -3,10 +3,14 @@ import { useState } from "react";
 import AdminSidebar from "./AdminSidebar";
 import adminimg from "../../assets/adminimg.svg";
 import themeicon from "../../assets/Component 10.svg";
+import { LayoutNavber } from "../LayoutNavber";
 
 const AdminLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+ const handleclick =()=>{
+alert("clicked")
 
+  }
   return (
     <div className="flex h-screen bg-[#F5F5F5]">
       {/* Sidebar */}
@@ -28,7 +32,7 @@ const AdminLayout = () => {
         )}
 
         {/* Top bar */}
-        <div className="px-10 border-b border-b-[#C6C8CB] py-4 flex items-center justify-between">
+        {/* <div className="px-10 border-b border-b-[#C6C8CB] py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img
               src={adminimg}
@@ -43,8 +47,14 @@ const AdminLayout = () => {
           <button className="w-10 h-10 hover:cursor-pointer flex items-center justify-center">
             <img src={themeicon} alt="Theme" />
           </button>
-        </div>
-
+        </div> */}
+<LayoutNavber
+  userImage={adminimg}
+  userName="Darlene Robertson"
+  userRole="Admin"
+  themeIcon={themeicon}
+  onThemeClick={handleclick}
+/>
         {/* Main content area */}
         <div className="flex-1 overflow-auto p-4">
           <Outlet /> {/* ✅ renders nested route content here */}

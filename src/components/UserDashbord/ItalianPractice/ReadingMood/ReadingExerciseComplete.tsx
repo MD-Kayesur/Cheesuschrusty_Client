@@ -1,5 +1,8 @@
 import React from 'react';
 import { Check, X, RefreshCw } from 'lucide-react';
+import { TiArrowForward } from "react-icons/ti";
+import { IoCheckmarkDoneSharp } from "react-icons/io5";
+import { GiCrossedAirFlows } from "react-icons/gi";
 
 interface Answer {
   question: string;
@@ -40,33 +43,32 @@ const ReadingExerciseComplete: React.FC = () => {
   const percentage = Math.round((correctCount / answers.length) * 100);
 
   return (
-    <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6">
+    <div className="  mx-auto  rounded-lg    ">
       {/* Success Icon */}
-      <div className="flex justify-center mb-4">
-        <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center">
-          <Check className="w-10 h-10 text-white" strokeWidth={3} />
+      <div className="flex justify-center mb-4 mt-6">
+        <div className="w-30 h-30 bg-[#4BAE4F] rounded-full flex items-center justify-center">
+          <Check className="w-20 h-20 text-white" strokeWidth={3} />
         </div>
       </div>
 
       {/* Title */}
-      <h1 className="text-center text-xl font-semibold text-gray-800 mb-2">
+      <h1 className="text-center text-2xl mt-4 font-semibold text-gray-800 mb-2">
         Reading Exercise Complete!
       </h1>
-      <p className="text-center text-sm text-gray-500 mb-6">
-        Great job! Review your answers below
-      </p>
+      <p className="text-center text-base text-gray-500 mb-6">
+You scored 3 out of 4 questions (75%)      </p>
 
       {/* Stats */}
-      <div className="flex justify-between items-center mb-6">
-        <div className="text-center">
+      <div className="flex justify-between items-center gap-4 mb-6">
+        <div className="text-center bg-[#F5F5F5] w-full py-3 border rounded-2xl border-[#EBEBEB]">
           <div className="text-3xl font-bold text-gray-800">{correctCount}</div>
           <div className="text-xs text-gray-500">CORRECT ANSWERS</div>
         </div>
-        <div className="text-center">
+        <div className="text-center py-3 w-full bg-[#F5F5F5]   border rounded-2xl border-[#EBEBEB]">
           <div className="text-3xl font-bold text-gray-800">{percentage}%</div>
           <div className="text-xs text-gray-500">ACCURACY</div>
         </div>
-        <div className="text-center">
+        <div className="text-center w-full py-3  bg-[#F5F5F5]   border rounded-2xl border-[#EBEBEB] ">
           <div className="text-3xl font-bold text-gray-800">30+</div>
           <div className="text-xs text-gray-500">XP EARNED</div>
         </div>
@@ -74,18 +76,19 @@ const ReadingExerciseComplete: React.FC = () => {
 
       {/* Action Buttons */}
       <div className="flex gap-3 mb-6">
-        <button className="flex-1 py-3 px-4 border-2 border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
-          <RefreshCw className="w-4 h-4" />
+        <button className="flex-1 py-3 px-4 border-2 rounded-2xl border-[#111827]rounded-lg font-medium cursor-pointer text-[#111827] hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
+          <RefreshCw className="w-5 h-5" />
           Try Again
         </button>
-        <button className="flex-1 py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
-          Keep Reading Practice →
+        <button className="flex-1 justify-center cursor-pointer flex items-center gap-1 py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+          Keep Reading Practice 
+          <TiArrowForward className='text-2xl' />
         </button>
       </div>
 
       {/* Answer Review Section */}
       <div>
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">Answer Review</h2>
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">Answer Review</h2>
         
         <div className="space-y-4">
           {answers.map((answer, index) => (
@@ -94,11 +97,11 @@ const ReadingExerciseComplete: React.FC = () => {
             }}>
               <div className="flex items-start gap-2 mb-2">
                 {answer.isCorrect ? (
-                  <Check className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <IoCheckmarkDoneSharp className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                 ) : (
-                  <X className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                  <GiCrossedAirFlows className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
                 )}
-                <p className="text-sm font-medium text-gray-800">
+                <p className="text-base font-medium text-gray-800">
                   {answer.question}
                 </p>
               </div>

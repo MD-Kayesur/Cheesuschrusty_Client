@@ -1,6 +1,7 @@
 import React from 'react';
 import { UserProgressBar } from './UserProgressBar';
- 
+import { ProgressBar } from '@/components/ProgressBar/ProgressBar';
+  
 interface StatCardProps {
   title: string;
   value: number | string;
@@ -9,6 +10,7 @@ interface StatCardProps {
   iconColor: string;
   progressBarColor?: string;
   unit?: string;
+  
 }
 
 export const UserStatCard: React.FC<StatCardProps> = ({
@@ -31,7 +33,20 @@ export const UserStatCard: React.FC<StatCardProps> = ({
          <Icon className={`w-8 h-8 ${iconColor}`} />
       </div>
       <div className="text-4xl font-bold text-[#333] mb-2">{displayValue}</div>
-      {isFraction && total && <UserProgressBar value={value as number} max={total} color={progressBarColor} />}
+      {isFraction && total && 
+      // <UserProgressBar value={value as number} max={total} color={progressBarColor} />
+        <ProgressBar 
+        current={value}
+        total={total}
+        color={progressBarColor}
+        height="h-2.5"
+        rounded="rounded-lg"
+        showPercentage
+      />
+      
+      
+      
+      }
     </div>
   );
 };
