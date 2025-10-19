@@ -3,7 +3,7 @@ import React from 'react';
 interface HeaderButtonProps {
   label: string;
   icon?: React.ReactNode;
-  onClick?: EventListener
+  onClick?: EventListener | undefined
 }
 
 const HeaderButton: React.FC<HeaderButtonProps> = ({ label, icon,onClick }) => (

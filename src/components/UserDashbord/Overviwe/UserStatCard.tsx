@@ -10,7 +10,7 @@ interface StatCardProps {
   iconColor: string;
   progressBarColor?: string;
   unit?: string;
-  
+   current?:string | number
 }
 
 export const UserStatCard: React.FC<StatCardProps> = ({
@@ -36,7 +36,7 @@ export const UserStatCard: React.FC<StatCardProps> = ({
       {isFraction && total && 
       // <UserProgressBar value={value as number} max={total} color={progressBarColor} />
         <ProgressBar 
-        current={value}
+        current={value} 
         total={total}
         color={progressBarColor}
         height="h-2.5"

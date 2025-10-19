@@ -97,6 +97,8 @@ import ListeningPractice from "@/components/UserDashbord/ItalianPractice/Listeni
 import ListeningModule from "@/components/UserDashbord/ItalianPractice/ListeningMood/ListeningModule";
 import WritingPractice from "@/components/UserDashbord/ItalianPractice/WritingMood/WritingPractice";
 import ExercisesContainer from "@/components/UserDashbord/ItalianPractice/WritingMood/ExercisesContainer";
+import UserDetailsPage from "@/components/AdminDashbord/UserManagementDashboard/UserDetailsPage/UserDetailsPage";
+import ContentManagementPage from "@/components/AdminDashbord/ContentManagementPage/ContentManagementPage";
   
  
 
@@ -161,7 +163,8 @@ const routes = createBrowserRouter([
        children: [
     { index: true, element: <AdminOverview /> },
     { path: "users", element: <AdminUserManagement /> },
-    { path: "content", element: <AdminContentManagement /> },
+    {  path:"/admin/:id", element:<UserDetailsPage />},
+    { path: "content", element: <ContentManagementPage /> },
     { path: "subscription", element: <AdminSubscription /> },
     { path: "analytics", element: <AdminAnalytics /> },
     { path: "support", element: <AdminSupport /> },

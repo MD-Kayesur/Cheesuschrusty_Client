@@ -4,7 +4,7 @@ interface ProgressBarProps {
   /** If using percentage directly (0–100) */
   progress?: number;
   /** If using step-based progress */
-  current?: number;
+  current?: string | number|any;
   total?: number;
   /** Optional label shown above the bar */
   label?: string;
