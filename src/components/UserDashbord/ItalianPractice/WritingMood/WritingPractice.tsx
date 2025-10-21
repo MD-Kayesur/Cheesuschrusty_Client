@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronLeft } from 'lucide-react';
 import HeaderButton from './HeaderButton';
-import ExerciseHeader from './ExerciseHeader';
+import ExerciseHeader from '../ExerciseHeader';
 import WritingArea from './WritingArea';
 import WritingTips from './WritingTips';
 import NavigationButtons from './NavigationButtons';
@@ -9,7 +9,7 @@ import NavigationButtons from './NavigationButtons';
 import WritingPracticeComplete from './WritingPracticeComplete';
 import CompleteSentences from './CompleteSentences';
 import { useNavigate } from 'react-router-dom';
-
+import writingicon from "../../../../assets/Dashbord/practice.svg"
 type Phase = 'writing' | 'completeSentences' | 'grammar' | 'complete';
 
 const WritingPractice: React.FC = () => {
@@ -28,6 +28,8 @@ const navigate=useNavigate()
     'Start with "La mattina, di solito..."',
     'Include foods: cornetto, caffè, cappuccino, biscotti',
     'Use present tense verbs: mangio, bevo, prendo',
+    'Costa 24 euro al chilogrammo.',
+    'Sì, sto cercando del formaggio parmigiano.'
   ];
 
   // Navigation handlers
@@ -62,6 +64,7 @@ const navigate=useNavigate()
             <ExerciseHeader
         title="Short Essay"
         description="Write a short paragraph about the given topic."
+        icon={writingicon}
         progressLabel="Exercise 1/3" 
         showTips={showTips}
         onToggleTips={() => setShowTips(!showTips)}

@@ -2,7 +2,7 @@
 
 
 import React from 'react';
-import { ChevronLeft, Check, TrendingUp, Target, Lightbulb, BookOpen, RotateCcw } from 'lucide-react';
+import {   Check, TrendingUp, Target, Lightbulb, BookOpen, RotateCcw } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 interface ExercisePerformance {

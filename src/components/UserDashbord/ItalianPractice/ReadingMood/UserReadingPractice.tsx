@@ -1,12 +1,13 @@
 
 
 import React, { useState } from "react";
-import { ChevronLeft, BookOpen, Volume2 } from "lucide-react";
+import { ChevronLeft,   } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ReadingExerciseComplete from "./ReadingExerciseComplete";
 import readingicon from "../../../../assets/Dashbord/darkreading.svg"
 import { MdOutlineTranslate } from "react-icons/md";
 import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
+import Header from "@/components/Header/Header";
 
  interface Question {
   id: number;
@@ -14,6 +15,14 @@ import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
   answers: string[];
   correctAnswer: string;
 }
+
+
+// interface AnswerResult {
+//   question: string;
+//   userAnswer: string | undefined;
+//   correctAnswer: string;
+//   isCorrect: boolean;
+// }
 
 const UserReadingPractice: React.FC = () => {
   const navigate = useNavigate();
@@ -102,12 +111,10 @@ const UserReadingPractice: React.FC = () => {
             <ChevronLeft className="w-6 h-6" />
             <span className="text-base font-semibold">Back To Practice</span>
           </button>
-          <div>
-            <h1 className="text-4xl mt-9 font-bold text-gray-900">Reading Practice</h1>
-            <p className="text-xl text-[#7E7E7E] mt-3">
-              Improve your Italian reading comprehension
-            </p>
-          </div>
+
+<Header  title="Reading Practice" subtitle="Improve your Italian reading comprehension" />
+
+           
         </div>
       </div>
 

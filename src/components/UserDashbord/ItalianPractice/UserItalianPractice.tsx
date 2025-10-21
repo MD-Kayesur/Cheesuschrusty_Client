@@ -1,5 +1,5 @@
 import React from "react";
- import { BookIcon, ClockIcon, TargetIcon, BookOpen, Headphones } from "lucide-react";
+ import {   ClockIcon, TargetIcon,   } from "lucide-react";
 import { Link, Outlet, useLocation } from "react-router-dom";
   import tatgeticon from "../../../assets/Dashbord/tergeticon.svg"
   import readingicon from "../../../assets/Dashbord/reading.svg"
@@ -7,8 +7,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
   import writingicon from "../../../assets/Dashbord/writing.svg"
   import speakingicon from "../../../assets/Dashbord/speaking.svg"
  import { GiBookmarklet } from "react-icons/gi";
-import { FcReading } from "react-icons/fc";
- 
+  
 import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
 
 

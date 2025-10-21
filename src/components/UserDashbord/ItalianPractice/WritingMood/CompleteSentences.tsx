@@ -1,9 +1,8 @@
 
 import React, { useState } from 'react';
-import { Lightbulb, Eye } from 'lucide-react';
+import { Lightbulb,  } from 'lucide-react';
 import NavigationButtons from './NavigationButtons';
-import completesectence from "../../../../assets/Dashbord/complete sectence.svg"
-import ExerciseHeader from './ExerciseHeader';
+ import ExerciseHeader from '../ExerciseHeader';
 // interface Sentence {
 //   id: number;
 //   prefix: string;
@@ -95,7 +94,7 @@ const CompleteSentences: React.FC<Props> = ({ onPrev, onNext }) => {
     setShowHints(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const hideHints = () => setShowHints({});
+  // const hideHints = () => setShowHints({});
  const [showTips, setShowTips] = useState(true);
   return (
     <div className="  mx-auto     rounded-xl      ">

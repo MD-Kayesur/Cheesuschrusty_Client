@@ -1,7 +1,11 @@
 import React from 'react';
-import { ChevronLeft, Check, TrendingUp, Target } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { ChevronLeft, Check, TrendingUp,    } from 'lucide-react';
+import { IoCheckmarkDoneSharp } from "react-icons/io5";
 
+import { useNavigate } from 'react-router-dom';
+import think from "../../../../assets/Dashbord/think.svg"
+import exericse from "../../../../assets/Dashbord/exercise.svg"
+import { ProgressBar } from '@/components/ProgressBar/ProgressBar';
 interface ExercisePerformance {
   name: string;
   score: number;
@@ -25,7 +29,7 @@ interface StudyPlanItem {
 }
 
 const ListeningPracticeComplete: React.FC = () => {
-      const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const exercisePerformance: ExercisePerformance[] = [
     { name: 'Audio Comprehension', score: 8, maxScore: 10, percentage: 80 },
@@ -74,97 +78,109 @@ const ListeningPracticeComplete: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen   p-6">
       <div className="  mx-auto">
         {/* Back Button */}
         <button
-              onClick={() => navigate("/user/practice")}
-              className="flex items-center gap-2 text-gray-700 hover:text-gray-900 mb-4"
-            >
-              <ChevronLeft className="w-4 h-4" />
-              <span className="text-sm">Back To Practice</span>
-            </button>
+          onClick={() => navigate("/user/practice")}
+          className="flex border p-3 cursor-pointer rounded-2xl items-center gap-2 text-gray-700 hover:text-gray-900 mb-4"
+        >
+          <ChevronLeft className="w-6 h-6" />
+          <span className="text-base font-semibold">Back To Practice</span>
+        </button>
 
         {/* Success Icon and Title */}
         <div className="text-center mb-8">
-          <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center">
-              <Check className="w-10 h-10 text-white" strokeWidth={3} />
+          <div className="flex justify-center mb-6 mt-6">
+            <div className="w-30 h-30 bg-[#4BAE4F] rounded-full flex items-center justify-center">
+              <Check className="w-20 h-20 text-white" strokeWidth={3} />
+
+              {/* <img src={serchimg} alt="" /> */}
             </div>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Listening Practice Complete!</h1>
-          <p className="text-sm text-gray-600">You earned 10 points and 15 seconds streak!</p>
+          <h1 className="text-4xl font-bold  text-[#3C424E] mb-2">Listening Practice Complete!</h1>
+          <p className="text-base text-[#999CA2]">You earned 10 points and 15 seconds streak!</p>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-3 gap-4 mb-8">
-          <div className="bg-green-50 rounded-lg p-6 text-center">
-            <div className="text-3xl font-bold text-gray-900 mb-1">10</div>
-            <div className="text-sm text-gray-600">Earned Points</div>
-          </div>
-          <div className="bg-blue-50 rounded-lg p-6 text-center">
-            <div className="text-3xl font-bold text-gray-900 mb-1">75%</div>
-            <div className="text-sm text-gray-600">Accuracy Rate</div>
-          </div>
-          <div className="bg-purple-50 rounded-lg p-6 text-center">
-            <div className="text-3xl font-bold text-gray-900 mb-1">30+</div>
-            <div className="text-sm text-gray-600">XP Earned</div>
+        <div className='max-w-7xl mx-auto'>
+          <div className="grid  grid-cols-3 gap-4 mb-8">
+            <div className="bg-[#4BAE4F1A] border border-[#EBEBEB] rounded-lg p-6 text-center">
+              <div className="text-3xl font-bold text-gray-900 mb-1">10</div>
+              <div className="text-sm text-gray-600">Earned Points</div>
+            </div>
+            <div className="bg-[#F7F9FF] border border-[#EBEBEB] rounded-lg p-6 text-center">
+              <div className="text-3xl font-bold text-gray-900 mb-1">75%</div>
+              <div className="text-sm text-gray-600">Accuracy Rate</div>
+            </div>
+            <div className="bg-[#E7EFFF] border border-[#EBEBEB]  rounded-lg p-6 text-center">
+              <div className="text-3xl font-bold text-gray-900 mb-1">30+</div>
+              <div className="text-sm text-gray-600">XP Earned</div>
+            </div>
           </div>
         </div>
 
         {/* Performance Analysis */}
-        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 rounded-r-lg">
+        <div className="bg-yellow-50 mt-12 border-l-4 border-yellow-400 p-4 mb-6 rounded-r-lg">
           <div className="flex items-center gap-2">
             <TrendingUp className="w-5 h-5 text-yellow-700" />
-            <span className="font-semibold text-yellow-900">Performance Analysis - Needs Improvement</span>
+            <span className="font-semibold text-yellow-900">Performance Analysis - <span className='text-[#667EEA]'> Needs Improvement</span></span>
           </div>
         </div>
 
-        <p className="text-sm text-gray-700 mb-6">
+        <p className="text-sm mt-10 bg-[#EBEBEB] py-6 px-4 rounded-2xl text-gray-700 mb-6">
           Don't worry! Listening is often the most challenging skill. With targeted practice, you'll see rapid improvement.
         </p>
 
         {/* Exercise Performance */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-4">
-            <Target className="w-5 h-5 text-gray-700" />
+            {/* <Target className="w-5 h-5 text-gray-700" /> */}
+            <img className='w-6 h-6' src={exericse} alt="" />
             <h2 className="text-lg font-bold text-gray-900">Exercise Performance</h2>
           </div>
-          
+ 
           <div className="grid grid-cols-3 gap-4">
             {exercisePerformance.map((exercise, index) => (
-              <div key={index} className="bg-white rounded-lg p-4 border border-gray-200">
+              <div key={index} className="  rounded-lg p-4 border border-gray-200">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-gray-700">{exercise.name}</span>
-                  <span className="text-sm font-bold text-gray-900">{exercise.percentage}%</span>
+                  <span className="text-base font-medium text-[#585858]">{exercise.name}</span>
+                  <span className="text-sm font-semibold text-[#696D77]">{exercise.percentage}%</span>
                 </div>
-                <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-gray-900"
-                    style={{ width: `${exercise.percentage}%` }}
-                  />
-                </div>
+
+                {/* Use your ProgressBar component here */}
+                <ProgressBar
+                  progress={exercise.percentage}          // Or use current/maxScore instead
+                  height="h-3"
+                  color="bg-gray-900"
+                  rounded="rounded-full"
+                  showPercentage={false}                 // Already showing % on top
+                  className="w-full"
+                />
               </div>
             ))}
           </div>
+
         </div>
 
         {/* Areas for Improvement */}
-        <div className="mb-8">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">📋 Areas for Improvement</h2>
-          
-          <div className="grid grid-cols-3 gap-4">
+        <div className="mb-8 mt-10">
+          <div className='flex items-center gap-2'>
+            <img className='w-6 h-6' src={think} alt="" />
+            <h2 className="text-2xl font-bold text-[#333]  ">Areas for Improvement</h2>
+          </div>
+
+          <div className="grid grid-cols-3 mt-5 gap-4">
             {areasForImprovement.map((area, index) => (
-              <div key={index} className="bg-white rounded-lg p-4 border border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-1">{area.title}</h3>
-                <p className="text-xs text-gray-600 mb-3">{area.description}</p>
-                
+              <div key={index} className="bg-white text-[#585858] rounded-lg p-4 border border-gray-200">
+                <h3 className="font-semibold text-xl  mb-1">{area.title}</h3>
+                <p className="text-sm  text-[#7E7E7E] mb-3">{area.description}</p> 
                 <div className="border-t border-gray-200 pt-3">
-                  <h4 className="text-xs font-semibold text-gray-700 mb-2">Recommended Practice:</h4>
+                  <h4 className="text-base font-semibold   text-[#585858] mb-2">Recommended Practice:</h4>
                   <ul className="space-y-1.5">
                     {area.practices.map((practice, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-xs text-gray-600">
-                        <Check className="w-3 h-3 text-green-500 flex-shrink-0 mt-0.5" />
+                      <li key={idx} className="flex items-start gap-2 text-sm  ">
+                        <IoCheckmarkDoneSharp className="w-4 h-4  text-[#0E9F6E] flex-shrink-0 mt-0.5" />
                         <span>{practice.text}</span>
                       </li>
                     ))}
@@ -177,15 +193,15 @@ const ListeningPracticeComplete: React.FC = () => {
 
         {/* Personalized Study Plan */}
         <div className="mb-8">
-          <h2 className="text-lg font-bold text-gray-900 mb-2">📚 Personalized Study Plan</h2>
-          <p className="text-sm text-gray-600 mb-4">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">📚 Personalized Study Plan</h2>
+          <p className="text-base text-[#7E7E7E] mb-4">
             Based on your performance, here's what we recommend for your next study sessions:
           </p>
 
           <div className="grid grid-cols-2 gap-4">
             {studyPlan.map((item) => (
-              <div key={item.id} className="bg-teal-50 rounded-lg p-4 flex items-start gap-3 border border-teal-200">
-                <div className="w-8 h-8 bg-teal-600 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-sm">
+              <div key={item.id} className="bg-[#0E9F6E1A] rounded-lg p-4 flex items-start gap-3 ">
+                <div className="w-8 h-8 bg-[#0E9F6E] text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-sm"> 
                   {item.id}
                 </div>
                 <p className="text-sm text-gray-800 pt-1">{item.text}</p>

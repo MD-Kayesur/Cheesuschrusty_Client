@@ -32,12 +32,12 @@ const ListeningDictation: React.FC<ListeningDictationProps> = ({ continueCallbac
       </div>
 
       {/* Text Area */}
-      <div className="mb-4">
+      <div className="mb-4 ">
         <textarea
           value={text}
           onChange={handleTextChange}
           placeholder="Type what you hear here...."
-          className="w-full h-40 p-4 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800 placeholder-gray-400"
+          className="w-full bg-[#EBEBEB] h-40 p-4   focus:bg-indigo-50 focus:border-indigo-600 hover:bg-indigo-50 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500   text-gray-800 placeholder-gray-400"
         />
       </div>
 

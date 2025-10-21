@@ -1,62 +1,85 @@
-
-
-// LessonsTabContent.tsx
-
 import React from 'react';
-import { ContentItem } from './types';
+import { Lesson } from './types';
 import { StatusBadge, DifficultyBadge } from '../Badges';
 
 interface LessonsTabContentProps {
   onOpenCreateModal: () => void;
-  lessons: ContentItem[];
+  lessons: Lesson[];
+  onView: (lesson: Lesson) => void;
+  onEdit: (lesson: Lesson) => void;
+  onHistory: (lesson: Lesson) => void;
 }
 
-const LessonsTabContent: React.FC<LessonsTabContentProps> = ({ onOpenCreateModal, lessons }) => {
+const LessonsTabContent: React.FC<LessonsTabContentProps> = ({
+  onOpenCreateModal,
+  lessons,
+  onView,
+  onEdit,
+  onHistory,
+}) => {
   return (
-    <div>
-      <div className="flex justify-between items-center mb-4">
+    <div className="p-4 bg-gray-50 min-h-screen">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-6 py-2">
         <div>
           <h2 className="text-xl font-semibold text-gray-800">Lessons</h2>
           <p className="text-sm text-gray-500">Manage structured Italian learning lessons.</p>
         </div>
         <button
           onClick={onOpenCreateModal}
-          className="flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+          className="flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors shadow-md"
         >
-          <span className="mr-2 text-lg">+</span> Create Lesson
+          <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+          Create Lesson
         </button>
       </div>
 
-      <div className="overflow-x-auto">
+      {/* Table */}
+      <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm bg-white">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cards</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Difficulty</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Modified</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">Title</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Cards</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Difficulty</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Category</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Status</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Last Modified</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/12">Action</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white divide-y divide-gray-100">
             {lessons.map((lesson) => (
-              <tr key={lesson.id}>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  {lesson.title}
-                  <p className="text-xs text-gray-500">{lesson.description}</p>
+              <tr key={lesson.id} className="hover:bg-gray-50">
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm font-medium text-gray-900">{lesson.title}</div>
+                  <div className="text-xs text-gray-500">{lesson.description}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{lesson.cards}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm"><DifficultyBadge difficulty={lesson.difficulty} /></td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{lesson.category}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm"><StatusBadge status={lesson.status} /></td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{lesson.lastModified}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <div className="flex space-x-2">
-                    <button title="View" className="text-gray-400 hover:text-blue-600">👁️</button>
-                    <button title="Edit" className="text-gray-400 hover:text-yellow-600">✏️</button>
-                    <button title="History" className="text-gray-400 hover:text-gray-600">🕒</button>
+                <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <div className="flex space-x-3 items-center">
+                    <button onClick={() => onView(lesson)} title="View" className="text-gray-400 hover:text-blue-600 transition-colors">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </button>
+                    <button onClick={() => onEdit(lesson)} title="Edit" className="text-gray-400 hover:text-yellow-600 transition-colors">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                      </svg>
+                    </button>
+                    <button onClick={() => onHistory(lesson)} title="History" className="text-gray-400 hover:text-gray-700 transition-colors">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </button>
                   </div>
                 </td>
               </tr>
@@ -77,77 +100,64 @@ export default LessonsTabContent;
 
 
 
-
-// // LessonsTabContent.tsx
-
 // import React from 'react';
-// import { Lesson, mockLessons, Difficulty, Status } from './types'; // Adjust path as needed
+// import { Lesson } from './types'; 
+// import { StatusBadge, DifficultyBadge } from '../Badges';
 
 // interface LessonsTabContentProps {
 //   onOpenCreateModal: () => void;
+//   lessons: Lesson[];
+//   onView: (lesson: Lesson) => void;
+//   onEdit: (lesson: Lesson) => void;
+//   onHistory: (lesson: Lesson) => void;
 // }
 
-// // Re-using badge components (assuming they are available or defined here for simplicity)
-// const StatusBadge: React.FC<{ status: Status }> = ({ status }) => {
-//   const color = status === 'Published' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700';
+// const LessonsTabContent: React.FC<LessonsTabContentProps> = ({ 
+//   onOpenCreateModal, 
+//   lessons,
+//   onView,
+//   onEdit,
+//   onHistory
+// }) => {
 //   return (
-//     <span className={`px-3 py-1 text-xs font-semibold rounded-full ${color}`}>
-//       {status}
-//     </span>
-//   );
-// };
-
-// const DifficultyBadge: React.FC<{ difficulty: Difficulty }> = ({ difficulty }) => {
-//   let color = 'bg-blue-100 text-blue-700';
-//   if (difficulty === 'Intermediate') color = 'bg-green-100 text-green-700'; // Note: Used green here for Intermediate to match image
-//   if (difficulty === 'Advanced') color = 'bg-yellow-100 text-yellow-700'; // Note: Used yellow here for Advanced to match image
-  
-//   return (
-//     <span className={`px-3 py-1 text-xs font-semibold rounded-full ${color}`}>
-//       {difficulty}
-//     </span>
-//   );
-// };
-
-
-// const LessonsTabContent: React.FC<LessonsTabContentProps> = ({ onOpenCreateModal }) => {
-//   const lessons = mockLessons; // Using mock data
-
-//   return (
-//     <div>
-//       <div className="flex justify-between items-center mb-4">
+//     <div className="p-4 bg-gray-50 min-h-screen">
+//       {/* Header */}
+//       <div className="flex justify-between items-center mb-6 py-2">
 //         <div>
 //           <h2 className="text-xl font-semibold text-gray-800">Lessons</h2>
 //           <p className="text-sm text-gray-500">Manage structured Italian learning lessons.</p>
 //         </div>
 //         <button
 //           onClick={onOpenCreateModal}
-//           className="flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+//           className="flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors shadow-md"
 //         >
-//           <span className="mr-2 text-lg">+</span> Create Lesson
+//           <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+//           </svg>
+//           Create Lesson
 //         </button>
 //       </div>
 
-//       {/* Lessons Table */}
-//       <div className="overflow-x-auto">
+//       {/* Table */}
+//       <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm bg-white">
 //         <table className="min-w-full divide-y divide-gray-200">
 //           <thead className="bg-gray-50">
 //             <tr>
-//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
-//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cards</th>
-//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Difficulty</th>
-//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Modified</th>
-//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">Title</th>
+//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Cards</th>
+//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Difficulty</th>
+//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Category</th>
+//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Status</th>
+//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Last Modified</th>
+//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/12">Action</th>
 //             </tr>
 //           </thead>
-//           <tbody className="bg-white divide-y divide-gray-200">
+//           <tbody className="bg-white divide-y divide-gray-100">
 //             {lessons.map((lesson) => (
-//               <tr key={lesson.id}>
-//                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-//                   {lesson.title}
-//                   <p className="text-xs text-gray-500">{lesson.description}</p>
+//               <tr key={lesson.id} className="hover:bg-gray-50">
+//                 <td className="px-6 py-4 whitespace-nowrap">
+//                   <div className="text-sm font-medium text-gray-900">{lesson.title}</div>
+//                   <div className="text-xs text-gray-500">{lesson.description}</div>
 //                 </td>
 //                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{lesson.cards}</td>
 //                 <td className="px-6 py-4 whitespace-nowrap text-sm">
@@ -158,11 +168,164 @@ export default LessonsTabContent;
 //                   <StatusBadge status={lesson.status} />
 //                 </td>
 //                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{lesson.lastModified}</td>
-//                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-//                   <div className="flex space-x-2">
-//                     <button title="View" className="text-gray-400 hover:text-blue-600">👁️</button>
-//                     <button title="Edit" className="text-gray-400 hover:text-yellow-600">✏️</button>
-//                     <button title="History" className="text-gray-400 hover:text-gray-600">🕒</button>
+//                 <td className="px-6 py-4 whitespace-nowrap text-sm">
+//                   <div className="flex space-x-3 items-center">
+//                     <button 
+//                       onClick={() => onView(lesson)} 
+//                       title="View" 
+//                       className="text-gray-400 hover:text-blue-600 transition-colors"
+//                     >
+//                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+//                       </svg>
+//                     </button>
+//                     <button 
+//                       onClick={() => onEdit(lesson)} 
+//                       title="Edit" 
+//                       className="text-gray-400 hover:text-yellow-600 transition-colors"
+//                     >
+//                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+//                       </svg>
+//                     </button>
+//                     <button 
+//                       onClick={() => onHistory(lesson)} 
+//                       title="History" 
+//                       className="text-gray-400 hover:text-gray-700 transition-colors"
+//                     >
+//                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+//                       </svg>
+//                     </button>
+//                   </div>
+//                 </td>
+//               </tr>
+//             ))}
+//           </tbody>
+//         </table>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default LessonsTabContent;
+
+
+
+
+
+
+
+
+
+
+
+// // LessonsTabContent.tsx
+
+// import React from 'react';
+// // Assuming ContentItem is defined in './types' as:
+// // type ContentItem = { id: string; title: string; description: string; cards: number; difficulty: string; category: string; status: string; lastModified: string; };
+// import { ContentItem } from './types'; 
+// // Assuming StatusBadge and DifficultyBadge are styled Tailwind components
+// import { StatusBadge, DifficultyBadge } from '../Badges';
+
+// // Define the new props for the action buttons
+// interface LessonsTabContentProps {
+//   onOpenCreateModal: () => void;
+//   lessons: ContentItem[];
+//   onView: (lesson: ContentItem) => void;
+//   onEdit: (lesson: ContentItem) => void;
+//   onHistory: (lesson: ContentItem) => void;
+// }
+
+// const LessonsTabContent: React.FC<LessonsTabContentProps> = ({ 
+//   onOpenCreateModal, 
+//   lessons,
+//   onView,
+//   onEdit,
+//   onHistory
+// }) => {
+//   return (
+//     <div className="p-4 bg-gray-50 min-h-screen">
+//       {/* Header */}
+//       <div className="flex justify-between items-center mb-6 py-2">
+//         <div>
+//           <h2 className="text-xl font-semibold text-gray-800">Lessons</h2>
+//           <p className="text-sm text-gray-500">Manage structured Italian learning lessons.</p>
+//         </div>
+//         <button
+//           onClick={onOpenCreateModal}
+//           className="flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors shadow-md"
+//         >
+//           <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+//           Create Lesson
+//         </button>
+//       </div>
+
+//       {/* Table */}
+//       <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm bg-white">
+//         <table className="min-w-full divide-y divide-gray-200">
+//           <thead className="bg-gray-50">
+//             <tr>
+//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/4">Title</th>
+//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Cards</th>
+//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Difficulty</th>
+//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Category</th>
+//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Status</th>
+//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-auto">Last Modified</th>
+//               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/12">Action</th>
+//             </tr>
+//           </thead>
+//           <tbody className="bg-white divide-y divide-gray-100">
+//             {lessons.map((lesson) => (
+//               <tr key={lesson.id} className="hover:bg-gray-50">
+//                 {/* Title and Description */}
+//                 <td className="px-6 py-4 whitespace-nowrap">
+//                   <div className="text-sm font-medium text-gray-900">{lesson.title}</div>
+//                   <div className="text-xs text-gray-500">{lesson.description}</div>
+//                 </td>
+//                 {/* Cards */}
+//                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{lesson.cards}</td>
+//                 {/* Difficulty Badge */}
+//                 <td className="px-6 py-4 whitespace-nowrap text-sm">
+//                   <DifficultyBadge difficulty={lesson.difficulty} />
+//                 </td>
+//                 {/* Category */}
+//                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{lesson.category}</td>
+//                 {/* Status Badge */}
+//                 <td className="px-6 py-4 whitespace-nowrap text-sm">
+//                   <StatusBadge status={lesson.status} />
+//                 </td>
+//                 {/* Last Modified */}
+//                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{lesson.lastModified}</td>
+//                 {/* Action Icons */}
+//                 <td className="px-6 py-4 whitespace-nowrap text-sm">
+//                   <div className="flex space-x-3 items-center">
+//                     {/* View Icon (Eye) */}
+//                     <button 
+//                       onClick={() => onView(lesson)} 
+//                       title="View" 
+//                       className="text-gray-400 hover:text-blue-600 transition-colors"
+//                     >
+//                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+//                     </button>
+//                     {/* Edit Icon (Pencil) */}
+//                     <button 
+//                       onClick={() => onEdit(lesson)} 
+//                       title="Edit" 
+//                       className="text-gray-400 hover:text-yellow-600 transition-colors"
+//                     >
+//                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+//                     </button>
+//                     {/* History Icon (Clock) */}
+//                     <button 
+//                       onClick={() => onHistory(lesson)} 
+//                       title="History" 
+//                       className="text-gray-400 hover:text-gray-700 transition-colors"
+//                     >
+//                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+//                     </button>
 //                   </div>
 //                 </td>
 //               </tr>

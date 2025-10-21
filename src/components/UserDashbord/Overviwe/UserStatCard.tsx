@@ -1,6 +1,5 @@
 import React from 'react';
-import { UserProgressBar } from './UserProgressBar';
-import { ProgressBar } from '@/components/ProgressBar/ProgressBar';
+ import { ProgressBar } from '@/components/ProgressBar/ProgressBar';
   
 interface StatCardProps {
   title: string;

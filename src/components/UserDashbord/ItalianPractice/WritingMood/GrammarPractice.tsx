@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft } from 'lucide-react';
-import ExerciseHeader from './ExerciseHeader';
+ import ExerciseHeader from '../ExerciseHeader';
 import NavigationButtons from './NavigationButtons';
 
 

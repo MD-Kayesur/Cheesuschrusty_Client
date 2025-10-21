@@ -11,7 +11,7 @@ import {
   FileText,
   Zap,
   Award,
-  Subtitles,
+   
 } from "lucide-react";
  
 import ContinueLearningCard from "./UserContinueLearningCard";
