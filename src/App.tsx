@@ -1,3 +1,4 @@
+import { ThemeProvider } from './hooks/useTheme'
 import Layout from './Layout/Layout'
 
 function App() {
@@ -5,7 +6,10 @@ function App() {
   return (
     <>
    <div className='overflow-hidden'>
-      <Layout></Layout>
+     
+       <ThemeProvider>
+       <Layout></Layout>
+    </ThemeProvider>
    </div>
     </>
   )

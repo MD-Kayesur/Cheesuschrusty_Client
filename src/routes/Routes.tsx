@@ -87,19 +87,17 @@ import UserItalianPractice from "@/components/UserDashbord/ItalianPractice/UserI
 import UserReadingPractice from "@/components/UserDashbord/ItalianPractice/ReadingMood/UserReadingPractice";
 import AdminLayout from "@/Layout/AdminLayout/AdminLayout";
  import AdminUserManagement from "@/components/AdminDashbord/Admin/AdminUserManagement";
-import AdminContentManagement from "@/components/AdminDashbord/Admin/AdminContentManagement";
-import AdminSubscription from "@/components/AdminDashbord/Admin/AdminSubscription";
+ import AdminSubscription from "@/components/AdminDashbord/Admin/AdminSubscription";
  import AdminAnalytics from "@/components/AdminDashbord/Admin/AdminAnalytics";
 import AdminOverview from "@/components/AdminDashbord/Overview/AdminOverview";
 import AdminSupport from "@/components/AdminDashbord/Admin/AdminSupport";
 import AdminSettings from "@/components/AdminDashbord/Admin/AdminSettings";
 import ListeningPractice from "@/components/UserDashbord/ItalianPractice/ListeningMood/ListeningPractice";
-import ListeningModule from "@/components/UserDashbord/ItalianPractice/ListeningMood/ListeningModule";
-import WritingPractice from "@/components/UserDashbord/ItalianPractice/WritingMood/WritingPractice";
-import ExercisesContainer from "@/components/UserDashbord/ItalianPractice/WritingMood/ExercisesContainer";
+  import ExercisesContainer from "@/components/UserDashbord/ItalianPractice/WritingMood/ExercisesContainer";
 import UserDetailsPage from "@/components/AdminDashbord/UserManagementDashboard/UserDetailsPage/UserDetailsPage";
 import ContentManagementPage from "@/components/AdminDashbord/ContentManagementPage/ContentManagementPage";
-  
+import FreeUserLayout from "@/Layout/FreeUserLayout/FreeUserLayout";
+   
  
 
 
@@ -112,6 +110,29 @@ const routes = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "login", element: <Login /> },
       { path: "signup", element: <Signup /> },
+
+
+  // ✅ Free User  ROUTES
+      {
+        path: "freeuser",
+        element: (
+          // <ProtectedRoute role="admin">
+          <FreeUserLayout />
+          // </ProtectedRoute>
+        ),
+       children: [
+    { index: true, element: <UserOverview /> },
+    // { path: "users", element: <AdminUserManagement /> },
+    // {  path:"/admin/:id", element:<UserDetailsPage />},
+    // { path: "content", element: <ContentManagementPage /> },
+    // { path: "subscription", element: <AdminSubscription /> },
+    // { path: "analytics", element: <AdminAnalytics /> },
+    // { path: "support", element: <AdminSupport /> },
+    // { path: "settings", element: <AdminSettings /> },
+  ],
+      },
+
+
 
 
       // ✅ USER ROUTES
@@ -171,6 +192,15 @@ const routes = createBrowserRouter([
     { path: "settings", element: <AdminSettings /> },
   ],
       },
+
+
+
+
+
+
+
+
+
     ],
   },
   { path: "*", element: <NotFound /> },
