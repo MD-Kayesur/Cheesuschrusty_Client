@@ -1,7 +1,7 @@
 
 
 import React, { useState } from "react";
-import { Lock, Play, RotateCw } from "lucide-react";
+import {  Play, RotateCw } from "lucide-react";
 
 interface TopicCardProps {
   title: string;
