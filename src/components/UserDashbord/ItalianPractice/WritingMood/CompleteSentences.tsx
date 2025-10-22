@@ -1,9 +1,8 @@
 
 import React, { useState } from 'react';
-import { Lightbulb, Eye } from 'lucide-react';
+import { Lightbulb,  } from 'lucide-react';
 import NavigationButtons from './NavigationButtons';
-import completesectence from "../../../../assets/Dashbord/complete sectence.svg"
-import ExerciseHeader from './ExerciseHeader';
+ import ExerciseHeader from '../ExerciseHeader';
 // interface Sentence {
 //   id: number;
 //   prefix: string;
@@ -95,7 +94,7 @@ const CompleteSentences: React.FC<Props> = ({ onPrev, onNext }) => {
     setShowHints(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const hideHints = () => setShowHints({});
+  // const hideHints = () => setShowHints({});
  const [showTips, setShowTips] = useState(true);
   return (
     <div className="  mx-auto     rounded-xl      ">
@@ -139,7 +138,7 @@ const CompleteSentences: React.FC<Props> = ({ onPrev, onNext }) => {
               />
               <span >{s.suffix}</span>
             </div>
-            <button onClick={() => toggleHint(s.id)} className="flex mt-4 bg-[#F7F9FF] border border-[#AFC7FF] text-base cursor-pointer items-center gap-2  rounded-xl p-2 text-gray-600">
+            <button onClick={() => toggleHint(s.id)} className="flex mt-4 cursor-pointer bg-[#F7F9FF] border border-[#AFC7FF] text-base cursor-pointer items-center gap-2  rounded-xl p-2 text-gray-600">
               <Lightbulb className="w-4 h-4 text-yellow-500" />
               {showHints[s.id] ? s.hint : 'Click to show hint'}
             </button>

@@ -16,7 +16,7 @@ export const UserPracticeAreaCard: React.FC<PracticeAreaCardProps> = ({
   iconColor,
   completed,
   total,
-  progress,
+  
 }) => {
   return (
     <div className="p-4   rounded-xl bg-[#F8F8F8]      ">

@@ -10,6 +10,7 @@ import Brainicon from "../../assets/Dashbord/fi_15.svg";
 import Usersicon from "../../assets/Dashbord/fi_14.svg";
 import Calendaricon from "../../assets/Dashbord/fi_13.svg";
 import Settingsicon from "../../assets/Dashbord/fi_1.svg";
+import supporticon from "../../assets/Dashbord/support.svg";
 import { MdKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
 interface SidebarProps {
@@ -28,10 +29,11 @@ export const FreeUserSidebar: React.FC<SidebarProps> = ({
         { path: "/freeuser", label: "Pro Overview", icon: overviewIcon },
         { path: "/freeuser/practice", label: "Practice", icon: Practiceicon },
         { path: "/freeuser/analytics", label: "Advanced Analytics", icon: TrendingUpicon },
-        { path: "/freeuser/flashcards", label: "Advanced Flashcards", icon: Brainicon },
+        { path: "/freeuser/flashcards", label: "Flashcards", icon: Brainicon },
         { path: "/freeuser/leaderboard", label: "Pro Leaderboard", icon: Usersicon },
         { path: "/freeuser/planner", label: "AI Study Planner", icon: Calendaricon },
         { path: "/freeuser/settings", label: "Settings", icon: Settingsicon },
+        { path: "/freeuser/support", label: "Settings", icon: supporticon },
     ];
 
     return (
@@ -76,7 +78,7 @@ export const FreeUserSidebar: React.FC<SidebarProps> = ({
                     {menuItems.map((item) => {
                         const isActive = location.pathname === item.path;
                         return (
-                            <Link
+                            <Link 
                                 key={item.path}
                                 to={item.path}
                                 className={`group flex items-center gap-3 mb-2 px-4 py-3 rounded-lg transition-all duration-200 ${isActive

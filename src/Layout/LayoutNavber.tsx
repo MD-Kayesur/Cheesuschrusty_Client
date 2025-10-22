@@ -1,4 +1,5 @@
 import React from "react";
+// import { Navigate, useNavigate } from "react-router-dom";
 
 interface UserHeaderProps {
   userImage: string;
@@ -15,6 +16,9 @@ export const LayoutNavber: React.FC<UserHeaderProps> = ({
   themeIcon,
   onThemeClick,
 }) => {
+
+// const navigate =useNavigate()
+
   return (
     <div className="px-10 border-b border-[#C6C8CB] py-5 flex items-center justify-between">
       {/* Left Side: User Info */}
@@ -32,11 +36,15 @@ export const LayoutNavber: React.FC<UserHeaderProps> = ({
 
       {/* Right Side: Theme Icon */}
       <button
-        className="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-full transition"
+        className="w-10 h-10 flex cursor-pointer items-center justify-center hover:bg-gray-100 rounded-full transition"
         onClick={onThemeClick}
       >
         <img src={themeIcon} alt="Theme" className="w-10 h-10" />
       </button>
+       
+
+ 
+
     </div>
   );
 };

@@ -1,9 +1,10 @@
 // CreateDeckModal.tsx
 
 import React, { useState } from 'react';
-import Modal from './Modal'; // Assuming Modal.tsx is in the same directory
-import { Difficulty } from './types';
-
+ import { Difficulty } from './types';
+ 
+import Modals from './Modals';
+ 
 interface CreateDeckModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -32,7 +33,7 @@ const CreateDeckModal: React.FC<CreateDeckModalProps> = ({ isOpen, onClose, onSu
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Create New Flashcard Deck">
+    <Modals isOpen={isOpen} onClose={onClose} title="Create New Flashcard Deck" subtitle="">
       <p className="text-sm text-gray-500 mb-6">Add a new flashcard deck to your Italian learning content</p>
       
       <form onSubmit={handleSubmit}>
@@ -85,12 +86,12 @@ const CreateDeckModal: React.FC<CreateDeckModalProps> = ({ isOpen, onClose, onSu
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className="w-full px-4 py-2 cursor-pointer bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
         >
           Create Deck
         </button>
       </form>
-    </Modal>
+    </Modals>
   );
 };
 

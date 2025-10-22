@@ -25,7 +25,7 @@ alert("clicked")
         {!sidebarOpen && (
           <button
             onClick={() => setSidebarOpen(true)}
-            className="absolute top-4 left-4 z-50 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center"
+            className="absolute cursor-pointer top-4 left-4 z-50 w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center"
           >
             ☰
           </button>

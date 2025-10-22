@@ -30,7 +30,7 @@ export const UserAchievementsCard: React.FC<AchievementsCardProps> = ({ achievem
         </div>
       ))}
     </div>
-    <button className="w-full mt-6 bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold text-sm hover:bg-gray-200 transition">
+    <button className="w-full mt-6 cursor-pointer bg-gray-100 text-gray-700 py-3 rounded-xl font-semibold text-sm hover:bg-gray-200 transition">
       View All Achievements
     </button>
   </div>

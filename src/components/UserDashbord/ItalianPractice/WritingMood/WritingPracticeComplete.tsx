@@ -2,7 +2,7 @@
 
 
 import React from 'react';
-import { ChevronLeft, Check, TrendingUp, Target, Lightbulb, BookOpen, RotateCcw } from 'lucide-react';
+import {   Check, TrendingUp, Target, Lightbulb, BookOpen, RotateCcw } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 interface ExercisePerformance {
@@ -201,7 +201,7 @@ const navigate =useNavigate()
 
         {/* Action Buttons */}
         <div className="flex justify-center gap-4">
-          <button onClick={() => navigate("/user/practice")} className="px-6 py-3 cursor-pointer border-2 border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-white transition-colors flex items-center gap-2 bg-white">
+          <button onClick={() => navigate("/user/practice")} className="px-6  py-3 cursor-pointer border-2 border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-white transition-colors flex items-center gap-2 bg-white">
             <RotateCcw className="w-5 h-5" />
             Practice Again
           </button>

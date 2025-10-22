@@ -14,10 +14,10 @@ const ListeningModule: React.FC = () => {
   // Audio state (for audio player above questions)
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(150); // example 2:30
-  const [speed, setSpeed] = useState(1);
-  const [volume, setVolume] = useState(0.7);
-  const [isMuted, setIsMuted] = useState(false);
+  const [duration] = useState(150); // example 2:30
+  // const [speed, setSpeed] = useState(1);
+  // const [volume, setVolume] = useState(0.7);
+  // const [isMuted, setIsMuted] = useState(false);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -27,10 +27,9 @@ const ListeningModule: React.FC = () => {
 
   const handlePlayPause = () => setIsPlaying(!isPlaying);
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => setCurrentTime(parseFloat(e.target.value));
-  const handleSpeedChange = (inc: boolean) => setSpeed(prev => Math.min(2, Math.max(0.5, inc ? prev + 0.25 : prev - 0.25)));
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => { setVolume(parseFloat(e.target.value)); if(parseFloat(e.target.value)>0) setIsMuted(false); };
-  const toggleMute = () => setIsMuted(!isMuted);
-
+  // const handleSpeedChange = (inc: boolean) => setSpeed(prev => Math.min(2, Math.max(0.5, inc ? prev + 0.25 : prev - 0.25)));
+  // const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => { setVolume(parseFloat(e.target.value)); if(parseFloat(e.target.value)>0) setIsMuted(false); };
+ 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-5xl mx-auto">
@@ -76,7 +75,7 @@ const ListeningModule: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-4">
-                <button onClick={handlePlayPause} className="w-14 h-14 bg-indigo-600 hover:bg-indigo-700 rounded-full flex items-center justify-center">
+                <button onClick={handlePlayPause} className="w-14 h-14 bg-indigo-600 hover:bg-indigo-700 cursor-pointer rounded-full flex items-center justify-center">
                   {isPlaying ? 'Pause' : 'Play'}
                 </button>
               </div>

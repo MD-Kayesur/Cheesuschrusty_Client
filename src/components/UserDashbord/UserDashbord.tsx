@@ -1,10 +1,11 @@
-import { Overview } from "./Overviwe/UserOverview"
+import { UserOverview } from "./Overviwe/UserOverview"
 
+ 
  
 function UserDashbord() {
   return (
     <div>
-      <Overview/>
+      <UserOverview/>
     </div>
   )
 }

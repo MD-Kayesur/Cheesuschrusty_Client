@@ -37,7 +37,7 @@ const UserContinueLearningCard: React.FC<ContinueLearningCardProps> = ({
         {/* Action Button */}
         <button
           onClick={onButtonClick}
-          className="bg-blue-600 mt-1 hover:bg-blue-700 text-white font-medium py-3 px-5 rounded-lg shadow-md transition duration-200 w-fit"
+          className="bg-blue-600 cursor-pointer mt-1 hover:bg-blue-700 text-white font-medium py-3 px-5 rounded-lg shadow-md transition duration-200 w-fit"
         >
           {buttonText}
         </button>

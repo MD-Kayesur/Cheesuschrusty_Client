@@ -1,3 +1,13 @@
+
+ 
+  const userData = localStorage.getItem("userData");
+const { role } = userData ? JSON.parse(userData) : {};
+
+console.log(role)
+ 
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

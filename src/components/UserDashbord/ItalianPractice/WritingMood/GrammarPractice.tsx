@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft } from 'lucide-react';
-import ExerciseHeader from './ExerciseHeader';
+ import ExerciseHeader from '../ExerciseHeader';
 import NavigationButtons from './NavigationButtons';
 
 
@@ -137,7 +136,7 @@ const [questions, setQuestions] = useState<Question[]>(grammarQuestions);
           <div className="grid grid-cols-2 gap-2">
             {q.options.map(o => (
               <button key={o.id} onClick={() => handleSelect(q.id, o.id)}
-                className={`p-3 border rounded-lg text-base text-left ${q.selectedAnswer === o.id ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white'}`}>
+                className={`p-3 border rounded-lg text-base cursor-pointer text-left ${q.selectedAnswer === o.id ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white'}`}>
                 <strong>{o.id}.</strong> {o.text}
               </button>
             ))}

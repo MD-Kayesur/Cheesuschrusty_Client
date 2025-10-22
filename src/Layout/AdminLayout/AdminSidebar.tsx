@@ -45,7 +45,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
         <div className="absolute top-2 right-2 lg:hidden">
           <button
             onClick={() => setSidebarOpen(false)}
-            className="hover:cursor-pointer w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center"
+            className="hover:cursor-pointer cursor-pointer w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center"
           >
             ✖
           </button>
@@ -106,7 +106,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({
         <div className="hidden lg:block border-t border-[#C6C8CB] p-3">
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="flex   text-[#7E7E7E] hover:bg-[#111827] hover:text-white justify-center w-full gap-2 px-3 py-2 rounded-lg bg-white   transition-all duration-200"
+            className="flex cursor-pointer  text-[#7E7E7E] hover:bg-[#111827] hover:text-white justify-center w-full gap-2 px-3 py-2 rounded-lg bg-white   transition-all duration-200"
           >
             {isCollapsed ? (
               <>
