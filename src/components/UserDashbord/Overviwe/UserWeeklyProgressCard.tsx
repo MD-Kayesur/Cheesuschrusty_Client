@@ -58,7 +58,7 @@ const UserWeeklyProgressCard: React.FC<WeeklyProgressCardProps> = ({
 
 <ProgressBar 
   progress={clampedProgress} 
-  color="bg-black" 
+  color="bg-[#111827]" 
    className='h-3'
   // showPercentage
   

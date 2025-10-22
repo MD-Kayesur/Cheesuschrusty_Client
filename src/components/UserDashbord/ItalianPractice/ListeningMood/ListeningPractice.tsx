@@ -11,7 +11,7 @@ import { AudioPlayerComponent } from './AudioPlayerComponent ';
 import Header from '@/components/Header/Header';
 import ExerciseHeader from '../ExerciseHeader';
 import lisdteningicon from "../../../../assets/Dashbord/microhead.svg";
-
+import audioFile from '../../../../assets/videoplayback_2.m4a';
 // Define props interface
 interface ListeningPracticeProps {
   continueCallback?: () => void; // optional if needed
@@ -27,8 +27,8 @@ interface Question {
 
 const ListeningPractice: React.FC<ListeningPracticeProps> = ({ continueCallback }) => {
   const navigate = useNavigate();
-  const audioSrc = "../../../../../public/videoplayback_2.m4a";
-
+  // const audioSrc = "/videoplayback_2.m4a"; // correct
+ 
   const [questions, setQuestions] = useState<Question[]>([
     { id: 1, question: "Che cosa ordina Marco?", options: ["Un cappuccino", "Un caffè", "Un cornetto", "Un tè"], selectedAnswer: null },
     { id: 2, question: "Dove si svolge la conversazione?", options: ["In un ristorante", "In un bar", "In una pizzeria", "In un supermercato"], selectedAnswer: null },
@@ -96,7 +96,7 @@ const ListeningPractice: React.FC<ListeningPracticeProps> = ({ continueCallback 
               onToggleTips={() => setShowTips(!showTips)}
             />
 
-            <AudioPlayerComponent src={audioSrc} />
+            <AudioPlayerComponent src={audioFile} />
 
             {phase === 'questions' && (
               <div className="rounded-xl mt-8 mb-6">

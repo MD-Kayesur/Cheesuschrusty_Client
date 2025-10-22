@@ -27,7 +27,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   label,
   showPercentage = false,
   color = "bg-indigo-600",
-  height = "h-2",
+  // height = "h-2",
   rounded = "rounded-full",
   className = "",
 }) => {
@@ -51,9 +51,9 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
       )}
 
       {/* Progress bar track */}
-      <div className={`w-full bg-[#D9D9D9] ${height} ${rounded} overflow-hidden`}>
+      <div className={`w-full bg-[#D9D9D9]  h-3 ${rounded} overflow-hidden`}>
         <div
-          className={`${color} ${height} ${rounded} transition-all duration-500 ease-out`}
+          className={`${color}  h-3 ${rounded} transition-all duration-500 ease-out`}
           style={{ width: `${percentage}%` }}
         />
       </div>

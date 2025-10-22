@@ -32,7 +32,7 @@ export const UserSidebar: React.FC<SidebarProps> = ({
     { path: "/user/leaderboard", label: "Pro Leaderboard", icon: Usersicon },
     { path: "/user/planner", label: "AI Study Planner", icon: Calendaricon },
     { path: "/user/settings", label: "Settings", icon: Settingsicon },
-  ];
+   ];
 
   return (
     <div

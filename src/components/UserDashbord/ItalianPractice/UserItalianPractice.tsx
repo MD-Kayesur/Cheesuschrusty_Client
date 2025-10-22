@@ -6,9 +6,11 @@ import { Link, Outlet, useLocation } from "react-router-dom";
   import lesteningicon from "../../../assets/Dashbord/listening.svg"
   import writingicon from "../../../assets/Dashbord/writing.svg"
   import speakingicon from "../../../assets/Dashbord/speaking.svg"
+  import lockicon from "../../../assets/Dashbord/lock.svg"
  import { GiBookmarklet } from "react-icons/gi";
   
 import { ProgressBar } from "@/components/ProgressBar/ProgressBar";
+import UnlockProCard from "@/components/FreeUserDashbord/Overview/UnlockProCard";
 
 
  
@@ -60,7 +62,15 @@ const DailyGoalProgress: React.FC<any> = ({ currentMinutes, totalMinutes, timeLe
 };
 // ----------------------------------------------------
 
-const SkillCard = ({ icon, title, subtitle, duration, progress, bgColor, iconBg, path }: any) => (
+const SkillCard = ({ icon, title, subtitle, duration, progress, bgColor, iconBg, path,lockicon }: any) => {
+
+
+  const userData = localStorage.getItem("userData");
+const { role } = userData ? JSON.parse(userData) : {};
+
+console.log(role)
+
+  return (
   <div className={`${bgColor} rounded-xl p-4 shadow-sm`}>
     <div className="flex items-start justify-between mb-4">
       <div className="flex items-center gap-3">
@@ -72,7 +82,16 @@ const SkillCard = ({ icon, title, subtitle, duration, progress, bgColor, iconBg,
           <p className="text-sm text-gray-500">{subtitle}</p>
         </div>
       </div>
-      <span className="text-sm text-gray-600">{duration}</span>
+
+{role === "freeuser" ? (
+  lockicon ? (
+    <img src={lockicon} alt="lock" />
+  ) : (
+    <span className="text-sm text-gray-600">{duration}</span>
+  )
+) : (
+  <span className="text-sm text-gray-600">{duration}</span>
+)}      
     </div>
 
     <ProgressBar
@@ -95,8 +114,15 @@ const SkillCard = ({ icon, title, subtitle, duration, progress, bgColor, iconBg,
     </Link>
   </div>
 );
+}
 
 const UserItalianPractice: React.FC = () => {
+
+  const userData = localStorage.getItem("userData");
+const { role } = userData ? JSON.parse(userData) : {};
+
+console.log(role)
+
   const location = useLocation();
   
    const progressData = {
@@ -124,11 +150,15 @@ const UserItalianPractice: React.FC = () => {
   };
   
    const isNested = location.pathname.startsWith("/user/practice/") && location.pathname !== "/user/practice";
-
+   const thisNested = location.pathname.startsWith("/freeuser/practice/") && location.pathname !== "/freeuser/practice";
+ 
   if (isNested) {
     return <Outlet />;
-  }
+  } 
 
+  if (thisNested) {
+      return <Outlet />;
+  }
   const skills = [
     {
       icon:  readingicon,
@@ -136,6 +166,7 @@ const UserItalianPractice: React.FC = () => {
       subtitle: "Comprehension practice",
       duration: "8 min",
       progress: 70,
+      //  lockicon:lockicon,
       bgColor: "bg-blue-50",
      iconBg: "bg-gradient-to-r from-[#0B5FFF] to-[#6C9AF0]",
       path: "reading",
@@ -145,6 +176,7 @@ const UserItalianPractice: React.FC = () => {
       title: "Listening",
       subtitle: "Audio comprehension",
       duration: "8 min",
+      lockicon:lockicon,
       progress: 50,
       bgColor: "bg-orange-50",
     //  iconBg: "bg-gradient-to-r from-[#BA0BFF] to-[#E19FFB]",
@@ -156,6 +188,7 @@ const UserItalianPractice: React.FC = () => {
       subtitle: "Sentence composition", // Updated subtitle
       duration: "10 min", // Updated duration
       progress: 30, // Updated progress
+       lockicon:lockicon,
       bgColor: "bg-green-50", // Updated color
       iconBg: "bg-gradient-to-r from-[#0E9F6E] to-[#11D090]",
       path: "writing",
@@ -165,6 +198,7 @@ const UserItalianPractice: React.FC = () => {
       title: "Speaking", // Corrected typo
       subtitle: "Pronunciation and fluency", // Updated subtitle
       duration: "12 min", // Updated duration
+       lockicon:lockicon,
       progress: 80, // Updated progress
       bgColor: "bg-red-50", // Updated color
       iconBg: "bg-gradient-to-r from-[#BA0BFF] to-[#E19FFB]",
@@ -200,6 +234,26 @@ const UserItalianPractice: React.FC = () => {
             <SkillCard key={index} {...skill} />
           ))}
         </div>
+
+
+{
+  role==='freeuser'?<>
+  
+  
+  {/* Usage 2: A different plan/offer (demonstrating reusability) */}
+            <div className="mt-8">
+                <UnlockProCard
+                    title="Unlock Premium Access"
+                    description="Access to all expert-led courses and downloadable resources."
+                    buttonText="Get 30 Days Trial"
+                    onButtonClick={() => alert('Starting Premium trial!')}
+                />
+            </div>
+  
+  
+  </>:""
+}
+
       </div>
     </div>
   );
