@@ -47,10 +47,10 @@ const UserRow: React.FC<UserRowProps> = ({ user, avatarColor, onEdit }) => {
       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.progress}%</td>
       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
         <div className="flex items-center gap-2">
-          <button onClick={onEdit} className="text-blue-600 hover:text-blue-800">
+          <button onClick={onEdit} className="text-blue-600 cursor-pointer hover:text-blue-800">
             <Edit2 className="w-4 h-4" />
           </button>
-          <button className="text-red-600 hover:text-red-800">
+          <button className="text-red-600 cursor-pointer hover:text-red-800">
             <Ban className="w-4 h-4" />
           </button>
         </div>

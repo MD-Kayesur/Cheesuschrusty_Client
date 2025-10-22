@@ -57,7 +57,7 @@ const PronunciationPractice: React.FC<PronunciationPracticeProps> = ({
           
           <button
             onClick={() => setShowPhonetic(!showPhonetic)}
-            className="px-4 py-2 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+            className="px-4 cursor-pointer py-2 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
           >
             {showPhonetic ? 'Hide Phonetic' : 'Show Phonetic'}
           </button>
@@ -73,7 +73,7 @@ const PronunciationPractice: React.FC<PronunciationPracticeProps> = ({
         <div className="flex justify-center mb-8">
           <button 
               onClick={handleSpeak}
-              className="flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex cursor-pointer items-center gap-2 px-6 py-3 bg-white border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <Volume2 size={20} className="text-gray-700" />
             <span className="font-medium text-gray-900">Listen To Pronunciation</span>
@@ -109,14 +109,14 @@ const PronunciationPractice: React.FC<PronunciationPracticeProps> = ({
           <div className="flex justify-center gap-4">
             <button
               onClick={onTryAgain}
-              className="flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-300 rounded-lg font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+              className="flex cursor-pointer items-center gap-2 px-6 py-3 bg-white border-2 border-gray-300 rounded-lg font-medium text-gray-900 hover:bg-gray-50 transition-colors"
             >
               <span>🔄</span>
               Try Again
             </button>
             <button
               onClick={onContinue}
-              className="px-6 py-3 bg-blue-600 rounded-lg font-medium text-white hover:bg-blue-700 transition-colors"
+              className="px-6 cursor-pointer py-3 bg-blue-600 rounded-lg font-medium text-white hover:bg-blue-700 transition-colors"
             >
               Continue
             </button>

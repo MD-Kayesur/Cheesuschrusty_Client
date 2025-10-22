@@ -45,7 +45,7 @@ export const UserSidebar: React.FC<SidebarProps> = ({
         <div className="absolute top-2 right-2 lg:hidden">
           <button
             onClick={() => setSidebarOpen(false)}
-            className="w-8 h-8 bg-gray-900 text-white rounded-full flex items-center justify-center hover:cursor-pointer"
+            className="w-8 h-8 bg-gray-900 cursor-pointer text-white rounded-full flex items-center justify-center hover:cursor-pointer"
           >
             ✖
           </button>
@@ -104,7 +104,7 @@ export const UserSidebar: React.FC<SidebarProps> = ({
         <div className="hidden lg:block border-t border-[#C6C8CB] p-3">
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="flex items-center justify-center w-full gap-2 px-3 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-100 transition-all duration-200"
+            className="flex items-center cursor-pointer justify-center w-full gap-2 px-3 py-2 rounded-lg bg-white text-gray-700 hover:bg-gray-100 transition-all duration-200"
           >
             {isCollapsed ? (
                  <>

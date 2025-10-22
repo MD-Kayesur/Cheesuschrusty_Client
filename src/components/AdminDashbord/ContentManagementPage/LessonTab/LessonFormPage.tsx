@@ -83,10 +83,10 @@ const LessonFormPage: React.FC<LessonFormPageProps> = ({ isEditMode = false, ini
         </div>
 
         <div className="flex space-x-3 pt-2">
-          <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+          <button type="submit" className="bg-blue-600 text-white cursor-pointer px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
             {isEditMode ? 'Save Changes' : 'Create Lesson'}
           </button>
-          <button type="button" onClick={onCancel} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 transition-colors">
+          <button type="button" onClick={onCancel} className="bg-gray-300 cursor-pointer text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400 transition-colors">
             Cancel
           </button>
         </div>

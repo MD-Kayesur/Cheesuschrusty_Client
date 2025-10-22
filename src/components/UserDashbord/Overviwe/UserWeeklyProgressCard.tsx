@@ -78,7 +78,7 @@ const UserWeeklyProgressCard: React.FC<WeeklyProgressCardProps> = ({
       {/* Action Button */}
       <button
         onClick={onButtonClick}
-        className="w-full border  border-[#333] text-[#333]  font-semibold   py-3 rounded-xl hover:bg-gray-50 transition duration-150"
+        className="w-full border cursor-pointer border-[#333] text-[#333]  font-semibold   py-3 rounded-xl hover:bg-gray-50 transition duration-150"
       >
         {buttonText}
       </button>

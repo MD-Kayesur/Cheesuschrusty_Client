@@ -35,14 +35,14 @@ const TopicCard: React.FC<TopicCardProps> = ({ title, onStart, onResume }) => {
             <div className="flex space-x-2 mt-auto pt-2">
                 <button
                     onClick={onResume}
-                    className="flex-1 flex items-center justify-center px-3 py-2 text-sm text-indigo-600 border border-indigo-200 rounded-lg hover:bg-indigo-50 transition-colors"
+                    className="flex-1 cursor-pointer flex items-center justify-center px-3 py-2 text-sm text-indigo-600 border border-indigo-200 rounded-lg hover:bg-indigo-50 transition-colors"
                 >
                     <RotateCw size={16} className="mr-1" />
                     Resume Session
                 </button>
                 <button
                     onClick={() => onStart(title)} // Pass the topic title here
-                    className="flex-1 flex items-center justify-center px-3 py-2 text-sm bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                    className="flex-1 cursor-pointer flex items-center justify-center px-3 py-2 text-sm bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
                 >
                     <Play size={16} className="mr-1" />
                     Start

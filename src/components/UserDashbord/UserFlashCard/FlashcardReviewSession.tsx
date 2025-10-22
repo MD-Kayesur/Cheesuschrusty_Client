@@ -28,7 +28,7 @@ const RatingButton: React.FC<RatingButtonProps> = ({
   colorClasses,
 }) => (
   <button
-    className={`p-4 rounded-xl text-center flex flex-col items-center justify-center transition-shadow hover:shadow-md ${colorClasses}`}
+    className={`p-4 cursor-pointer rounded-xl text-center flex flex-col items-center justify-center transition-shadow hover:shadow-md ${colorClasses}`}
   >
     {icon}
     <p className="font-bold text-lg mt-2 mb-1">{label}</p>
@@ -135,7 +135,7 @@ const handleSpeak = () => {
             <button
               onClick={handlePreviousCard}
               disabled={isFirstCard}
-              className={`absolute left-0 p-3 bg-white rounded-full shadow-md text-gray-600 transition-colors z-10 
+              className={`absolute cursor-pointer left-0 p-3 bg-white rounded-full shadow-md text-gray-600 transition-colors z-10 
                   ${isFirstCard ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'}`}
             >
               <ChevronLeft size={24} />
@@ -172,7 +172,7 @@ const handleSpeak = () => {
 <div className="flex items-center justify-center mt-10">
                 <button 
                   onClick={handleSpeak} // Call the TTS function
-                  className="flex items-center text-gray-700 hover:text-indigo-600 transition-colors"
+                  className="flex cursor-pointer items-center text-gray-700 hover:text-indigo-600 transition-colors"
                 >
                   <Volume2 size={24} className="mr-2 text-indigo-500" />
                   <span className="text-sm">Click to hear pronunciation</span>
@@ -191,7 +191,7 @@ const handleSpeak = () => {
             <button
               onClick={handleNextCard}
               disabled={isLastCard}
-              className={`absolute right-0 p-3 bg-white rounded-full shadow-md text-gray-600 transition-colors z-10
+              className={`absolute cursor-pointer right-0 p-3 bg-white rounded-full shadow-md text-gray-600 transition-colors z-10
                   ${isLastCard ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'}`}
             >
               <ChevronRight size={24} />
@@ -239,13 +239,13 @@ const handleSpeak = () => {
               <button 
                   onClick={handlePreviousCard}
                   disabled={isFirstCard}
-                  className={`px-8 py-3 bg-white border border-gray-300 text-gray-700 font-medium rounded-lg transition-colors ${isFirstCard ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'}`}
+                  className={`px-8 py-3 cursor-pointer bg-white border border-gray-300 text-gray-700 font-medium rounded-lg transition-colors ${isFirstCard ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'}`}
               >
                 Previous Card
               </button>
               <button
                 onClick={handleNextCard}
-                className="px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-8 py-3 cursor-pointer bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
               >
                 {isLastCard ? "Finish Session" : "Next Card"} {/* Dynamic button text */}
               </button>
@@ -307,10 +307,10 @@ const handleSpeak = () => {
 
             {/* Action Buttons */}
             <div className="space-y-3 mt-6">
-              <button className="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center">
+              <button className="w-full cursor-pointer py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center">
                 <Pause size={20} className="mr-2" /> Pause Session
               </button>
-              <button className="w-full py-3 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors flex items-center justify-center">
+              <button className="w-full py-3 cursor-pointer bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 transition-colors flex items-center justify-center">
                 <X size={20} className="mr-2" /> End Session
               </button>
             </div>

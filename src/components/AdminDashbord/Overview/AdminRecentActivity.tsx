@@ -46,7 +46,7 @@ const AdminRecentActivity: React.FC = () => (
   <div className="bg-white p-6 rounded-lg  ">
     <div className="flex items-center justify-between mb-4">
       <h2 className="text-2xl font-semibold">Recent Activity</h2>
-      <button className="text-blue-500 text-sm">View all</button>
+      <button className="text-blue-500 text-sm cursor-pointer">View all</button>
     </div>
 
     <div className="space-y-5 mt-6">

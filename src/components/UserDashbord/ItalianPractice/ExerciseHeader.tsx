@@ -33,7 +33,7 @@ const ExerciseHeader: React.FC<ExerciseHeaderProps> = ({
   showTips,
   onToggleTips,
   icon,
-  gradientColor = "from-amber-400 to-orange-500",
+  
 }) => {
   return (
     <div className="py-6     rounded-t-xl">

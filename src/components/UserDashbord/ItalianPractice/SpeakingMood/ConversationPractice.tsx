@@ -44,13 +44,13 @@ const ConversationPractice: React.FC<ConversationPracticeProps> = ({
         <div className="flex justify-center gap-4">
           <button
             onClick={onTryAgain}
-            className="flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-300 rounded-lg font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+            className="flex items-center cursor-pointer gap-2 px-6 py-3 bg-white border-2 border-gray-300 rounded-lg font-medium text-gray-900 hover:bg-gray-50 transition-colors"
           >
             <span>🔄</span> Try Again
           </button>
           <button
             onClick={onContinue}
-            className="px-6 py-3 bg-blue-600 rounded-lg font-medium text-white hover:bg-blue-700 transition-colors"
+            className="px-6 py-3 cursor-pointer bg-blue-600 rounded-lg font-medium text-white hover:bg-blue-700 transition-colors"
           >
             Next Exercise
           </button>
@@ -72,7 +72,7 @@ const ConversationPractice: React.FC<ConversationPracticeProps> = ({
             </div>
             <h2 className="text-3xl font-bold text-gray-900 mb-2">{conversationData.title}</h2>
             <p className="text-gray-600 mb-4">{conversationData.description}</p>
-            <button className="px-4 py-2 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+            <button className="px-4 py-2 cursor-pointer text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
               View Role Guidance
             </button>
           </div>
@@ -80,7 +80,7 @@ const ConversationPractice: React.FC<ConversationPracticeProps> = ({
           <div className="flex mt-6 justify-center">
             <button
               onClick={onStart}
-              className="flex items-center gap-2 px-8 py-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+              className="flex items-center cursor-pointer gap-2 px-8 py-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
             >
               <Volume2 size={20} />
               Begin Conversation
@@ -112,7 +112,7 @@ const ConversationPractice: React.FC<ConversationPracticeProps> = ({
               {/* Waiter Message */}
               <div className="bg-gray-100 rounded-2xl rounded-tl-none p-4 text-left">
                 <p className="text-gray-900 font-medium mb-2">{message.italian}</p>
-                <button className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700">
+                <button className="flex items-center cursor-pointer gap-2 text-sm text-blue-600 hover:text-blue-700">
                   <Volume2 size={14} /> <span>Listen</span>
                 </button>
               </div>
@@ -134,7 +134,7 @@ const ConversationPractice: React.FC<ConversationPracticeProps> = ({
           <div className="flex justify-center">
             <button
               onClick={onRecordResponse}
-              className="flex items-center gap-2 px-8 py-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+              className="flex items-center cursor-pointer gap-2 px-8 py-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
             >
               <Mic size={20} />
               Record Your Response

@@ -151,7 +151,7 @@ export const AudioPlayerComponent: React.FC<AudioPlayerProps> = ({ src }) => {
       <div className="flex items-center justify-center gap-4 mb-8">
         <button
           onClick={() => handleSkip(-5)}
-          className="w-10 cursor-pointer h-10 flex items-center justify-center border rounded-full text-gray-700 hover:bg-gray-100 transition-colors"
+          className="w-10   h-10 cursor-pointer flex items-center justify-center border rounded-full text-gray-700 hover:bg-gray-100 transition-colors"
           title="Skip Backward 5 seconds"
         >
           <SkipBack className="w-5 h-5" />
@@ -187,7 +187,7 @@ export const AudioPlayerComponent: React.FC<AudioPlayerProps> = ({ src }) => {
           <div className="flex items-center gap-1">
             <button
               onClick={() => handleSpeedChange(false)}
-              className="w-8 cursor-pointer h-8 flex items-center justify-center border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+              className="w-8 cursor-pointer h-8 flex   items-center justify-center border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-100 transition-colors"
               disabled={speed <= 0.5}
             >
               <span className="mb-0.5">-</span>

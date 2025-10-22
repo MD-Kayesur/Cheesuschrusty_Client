@@ -315,7 +315,7 @@ export const UserAnalytics: React.FC = () => {
                             />
                         </div>
 
-                        <button className="w-full mt-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center">
+                        <button className="w-full mt-6 py-3 bg-indigo-600 cursor-pointer text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center">
                             <Sparkles size={20} className="mr-2"/>
                             Start New Session
                         </button>

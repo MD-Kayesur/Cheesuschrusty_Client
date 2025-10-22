@@ -10,7 +10,7 @@ const TabButton: React.FC<{
   onClick: (label: Tab) => void;
 }> = ({ label, isActive, onClick }) => (
   <button
-    className={`px-6 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
+    className={`px-6 py-2 cursor-pointer rounded-lg text-sm font-medium transition-colors duration-200 ${
       isActive
         ? 'bg-indigo-600 text-white shadow-md'
         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'

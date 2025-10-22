@@ -75,7 +75,7 @@ const ListeningModule: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-4">
-                <button onClick={handlePlayPause} className="w-14 h-14 bg-indigo-600 hover:bg-indigo-700 rounded-full flex items-center justify-center">
+                <button onClick={handlePlayPause} className="w-14 h-14 bg-indigo-600 hover:bg-indigo-700 cursor-pointer rounded-full flex items-center justify-center">
                   {isPlaying ? 'Pause' : 'Play'}
                 </button>
               </div>

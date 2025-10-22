@@ -75,7 +75,7 @@ export const UserSettings: React.FC = () => {
                                     <p className="text-xs text-gray-500">Learning Italian since March 2024 • 7 day streak</p>
                                 </div>
                             </div>
-                            <button className="flex items-center text-blue-600 font-medium text-sm hover:text-blue-700 transition-colors">
+                            <button className="flex items-center cursor-pointer text-blue-600 font-medium text-sm hover:text-blue-700 transition-colors">
                                 <Edit2 size={16} className="mr-1" /> Edit
                             </button>
                         </div>
@@ -109,10 +109,10 @@ export const UserSettings: React.FC = () => {
                         </div>
                         <p className="text-sm text-gray-600 mb-6">Next billing: $24.99 on December 15, 2024</p>
                         <div className="flex space-x-4">
-                            <button className="flex-1 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
+                            <button className="flex-1 px-6 cursor-pointer py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
                                 Change Plan
                             </button>
-                            <button className="flex-1 px-6 py-3 bg-white border border-gray-300 text-gray-800 font-medium rounded-lg hover:bg-gray-50 transition-colors">
+                            <button className="flex-1 px-6 py-3 cursor-pointer bg-white border border-gray-300 text-gray-800 font-medium rounded-lg hover:bg-gray-50 transition-colors">
                                 Billing History
                             </button>
                         </div>
@@ -217,7 +217,7 @@ export const UserSettings: React.FC = () => {
                     </SettingsPanel>
 
                     {/* 6. Log Out Button */}
-                    <button className="w-full mt-4 flex items-center justify-center p-4 bg-red-100 text-red-700 font-bold rounded-xl hover:bg-red-200 transition-colors border border-red-200">
+                    <button className="w-full mt-4 flex items-center justify-center cursor-pointer p-4 bg-red-100 text-red-700 font-bold rounded-xl hover:bg-red-200 transition-colors border border-red-200">
                         <LogOut size={20} className="mr-2" />
                         Log Out
                     </button>

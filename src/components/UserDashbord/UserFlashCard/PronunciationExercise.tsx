@@ -23,7 +23,7 @@ export const PronunciationExercise: React.FC<PronunciationExerciseProps> = ({ on
                         <p className="text-gray-600 text-lg mb-4">
                             Where can I find a pharmacy?
                         </p>
-                        <button className="px-3 py-1 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                        <button className="px-3 cursor-pointer py-1 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
                             Hide Phonetic
                         </button>
                         <p className="text-gray-500 text-xs mt-1">
@@ -33,7 +33,7 @@ export const PronunciationExercise: React.FC<PronunciationExerciseProps> = ({ on
 
                     {/* Listen Button */}
                     <div className="flex justify-center mb-10">
-                        <button className="flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-300 rounded-full hover:bg-gray-50 transition-colors">
+                        <button className="flex cursor-pointer items-center gap-2 px-6 py-3 bg-white border-2 border-gray-300 rounded-full hover:bg-gray-50 transition-colors">
                             <Volume2 size={20} className="text-gray-700" />
                             <span className="font-medium text-gray-900">Listen To Pronunciation</span>
                         </button>
@@ -68,14 +68,14 @@ export const PronunciationExercise: React.FC<PronunciationExerciseProps> = ({ on
                     <div className="flex justify-center gap-4">
                         <button
                             onClick={onTryAgain}
-                            className="flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-300 rounded-lg font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+                            className="flex items-center cursor-pointer gap-2 px-6 py-3 bg-white border-2 border-gray-300 rounded-lg font-medium text-gray-900 hover:bg-gray-50 transition-colors"
                         >
                             <span>🔄</span>
                             Try Again
                         </button>
                         <button
                             onClick={onContinue}
-                            className="px-6 py-3 bg-blue-600 rounded-lg font-medium text-white hover:bg-blue-700 transition-colors"
+                            className="px-6 py-3 bg-blue-600 cursor-pointer rounded-lg font-medium text-white hover:bg-blue-700 transition-colors"
                         >
                             Continue
                         </button>

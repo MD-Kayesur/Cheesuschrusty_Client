@@ -55,7 +55,7 @@ const ExerciseHeader: React.FC<ExerciseHeaderProps> = ({ currentExercise, curren
             <p className="text-sm text-gray-600">{info.description}</p>
           </div>
         </div>
-        <button className="px-4 py-2 text-sm font-medium text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors">
+        <button className="px-4 py-2 cursor-pointer text-sm font-medium text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors">
           {exerciseLabel}
         </button>
       </div>

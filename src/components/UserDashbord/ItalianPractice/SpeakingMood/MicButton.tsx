@@ -12,7 +12,7 @@ const MicButton: React.FC<MicButtonProps> = ({ isRecording, onClick, label }) =>
     <div className="flex justify-center mb-6">
       <button
         onClick={onClick}
-        className={`w-20 h-20 rounded-full flex items-center justify-center transition-all ${
+        className={`w-20 h-20 cursor-pointer rounded-full flex items-center justify-center transition-all ${
           isRecording
             ? 'bg-red-500 hover:bg-red-600 animate-pulse'
             : 'bg-indigo-600 hover:bg-indigo-700'

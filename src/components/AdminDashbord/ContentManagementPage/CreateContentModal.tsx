@@ -55,7 +55,7 @@ const CreateContentModal: React.FC<CreateContentModalProps> = ({ isOpen, onClose
             <option key={d} value={d}>{d}</option>
           ))}
         </select>
-        <button type="submit" className="bg-blue-600 text-white p-2 rounded">Create Deck</button>
+        <button type="submit" className="bg-blue-600 cursor-pointer text-white p-2 rounded">Create Deck</button>
       </form>
     </Modal>
   );

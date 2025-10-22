@@ -12,7 +12,7 @@ const FlashcardsTabContent: React.FC<FlashcardsTabContentProps> = ({ decks, onOp
   return (
     <div>
       <div className="flex justify-end mb-4">
-        <button onClick={onOpenCreateModal} className="bg-blue-600 text-white px-4 py-2 rounded">Create Deck</button>
+        <button onClick={onOpenCreateModal} className="bg-blue-600 cursor-pointer text-white px-4 py-2 rounded">Create Deck</button>
       </div>
       <table className="min-w-full bg-white border">
         <thead>

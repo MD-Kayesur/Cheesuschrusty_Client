@@ -145,7 +145,7 @@ const SpeakingPractice: React.FC = () => {
     <div className="min-h-screen  ">
       <div className="  border-b border-gray-200">
         <div className="  mx-auto px-4 py-4">
-          <button className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors">
+          <button className="flex cursor-pointer items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors">
             <ArrowLeft size={20} />
             <span className="text-sm font-medium">Back To Practice</span>
           </button>

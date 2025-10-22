@@ -209,7 +209,7 @@ const UserReadingPractice: React.FC = () => {
                       <button
                         key={index}
                         onClick={() => setSelectedAnswer(answer)}
-                        className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-200 ${
+                        className={`w-full text-left p-4 rounded-lg cursor-pointer border-2 transition-all duration-200 ${
                           selectedAnswer === answer
                             ? "border-blue-600 bg-blue-50"
                             : "border-gray-200 hover:border-gray-300 bg-white"
@@ -231,7 +231,7 @@ const UserReadingPractice: React.FC = () => {
                   <button
                     onClick={handlePrevious}
                     disabled={currentQuestionIndex === 0}
-                    className="flex-1 px-6 py-3 border border-[#111827] rounded-lg font-medium cursor-pointer text-gray-700 hover:bg-gray-50 text-base transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 px-6 py-3 border border-[#111827]  rounded-lg font-medium cursor-pointer text-gray-700 hover:bg-gray-50 text-base transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <ChevronLeft className="w-4 h-4" />
                     Previous

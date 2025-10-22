@@ -32,7 +32,7 @@ export const LayoutNavber: React.FC<UserHeaderProps> = ({
 
       {/* Right Side: Theme Icon */}
       <button
-        className="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-full transition"
+        className="w-10 h-10 flex cursor-pointer items-center justify-center hover:bg-gray-100 rounded-full transition"
         onClick={onThemeClick}
       >
         <img src={themeIcon} alt="Theme" className="w-10 h-10" />

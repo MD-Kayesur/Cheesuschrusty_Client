@@ -135,7 +135,7 @@ export const SetupGoalView: React.FC = () => {
         </div>
 
         {/* Generate Button */}
-        <button className="w-full flex items-center justify-center space-x-2 bg-indigo-600 text-white py-3 rounded-xl hover:bg-indigo-700 transition-colors shadow-lg mt-6">
+        <button className="w-full flex cursor-pointer items-center justify-center space-x-2 bg-indigo-600 text-white py-3 rounded-xl hover:bg-indigo-700 transition-colors shadow-lg mt-6">
           <Plus className="h-5 w-5" />
           <span>Generate by AI Study Planner</span>
         </button>

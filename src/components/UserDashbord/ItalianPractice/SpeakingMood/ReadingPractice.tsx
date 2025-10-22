@@ -29,7 +29,7 @@ const ReadingPractice: React.FC<ReadingPracticeProps> = ({
           <p className="text-gray-600 mb-6 leading-relaxed">
             {readingText.english}
           </p>
-          <button className="px-4 py-2 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+          <button className="px-4 cursor-pointer py-2 text-sm text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
             Hide Translation
           </button>
         </div>
@@ -48,14 +48,14 @@ const ReadingPractice: React.FC<ReadingPracticeProps> = ({
           <div className="flex justify-center gap-4">
             <button
               onClick={onTryAgain}
-              className="flex items-center gap-2 px-6 py-3 bg-white border-2 border-gray-300 rounded-lg font-medium text-gray-900 hover:bg-gray-50 transition-colors"
+              className="flex items-center cursor-pointer gap-2 px-6 py-3 bg-white border-2 border-gray-300 rounded-lg font-medium text-gray-900 hover:bg-gray-50 transition-colors"
             >
               <span>🔄</span>
               Try Again
             </button>
             <button
               onClick={onContinue}
-              className="px-6 py-3 bg-blue-600 rounded-lg font-medium text-white hover:bg-blue-700 transition-colors"
+              className="px-6 py-3 bg-blue-600 cursor-pointer rounded-lg font-medium text-white hover:bg-blue-700 transition-colors"
             >
               Finish
             </button>
