@@ -11,13 +11,17 @@ interface UserHeaderProps {
 
 export const LayoutNavber: React.FC<UserHeaderProps> = ({
   userImage,
-  userName,
-  userRole,
+  // userName,
+  // userRole,
   themeIcon,
   onThemeClick,
 }) => {
 
-// const navigate =useNavigate()
+// const navigate =useNavigate() 
+  const userData = localStorage.getItem("userData");
+const { role } = userData ? JSON.parse(userData) : {};
+
+console.log(role)
 
   return (
     <div className="px-10 border-b border-[#C6C8CB] py-5 flex items-center justify-between">
@@ -29,9 +33,28 @@ export const LayoutNavber: React.FC<UserHeaderProps> = ({
           className="w-10 h-10 rounded-full object-cover"
         />
         <div>
-          <div className="font-semibold text-sm">{userName}</div>
-          <div className="text-base text-gray-500">{userRole}</div>
-        </div>
+  {role === "admin" && (
+    <div>
+      <div className="font-semibold text-sm">Admin</div>
+      <div className="text-base text-gray-500">Admin</div>
+    </div>
+  )}
+
+  {role === "user" && (
+    <div>
+      <div className="font-semibold text-sm"> User</div>
+      <div className="text-base text-gray-500"> User</div>
+    </div>
+  )}
+
+  {role === "freeuser" && (
+    <div>
+      <div className="font-semibold text-sm">FreeUser</div>
+      <div className="text-base text-gray-500">Free User</div>
+    </div>
+  )}
+</div>
+
       </div>
 
       {/* Right Side: Theme Icon */}
